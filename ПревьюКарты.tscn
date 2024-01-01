@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://dp2afwupjdq74"]
+
+[ext_resource type="Script" path="res://Основа/ПревьюКарты.gd" id="1_0al2e"]
+[ext_resource type="Shader" path="res://Карта3D.gdshader" id="3_1682g"]
+[ext_resource type="FontFile" uid="uid://cuf6encmyqm8c" path="res://Ресурсы/Текстуры/centurygothic.ttf" id="4_hpd1h"]
+[ext_resource type="FontFile" uid="uid://d2ow7xpqrlpki" path="res://Ресурсы/Текстуры/centurygothic_bold.ttf" id="5_m883g"]
+
+[sub_resource type="Animation" id="Animation_lnufp"]
+resource_name = "взять_карту"
+length = 1.6965
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0.33, 1, 8.06566, 4.35998, 1.97747, 0.54, 1, 8.06566, 7.0316, 1.97747, 0.72, 1, 8.06566, 7.0316, 1.97747, 1.11, 1, 3.07735, 16.9439, -0.182488, 1.33, 1, 2.68472, 17.7241, -0.352499)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = PackedFloat32Array(0.33, 1, -0.5, -0.5, 0.5, -0.5, 0.54, 1, -0.5, -0.5, 0.5, -0.5, 0.59, 1, -0.5, -0.5, 0.5, -0.5, 0.91, 1, 0.347419, 0.622527, -0.305084, 0.631414, 1.17, 1, -1.91069e-15, 4.37114e-08, -4.37114e-08, 1)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.62),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"положить_карту_в_руку"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rg1ch"]
+_data = {
+"взять_карту": SubResource("Animation_lnufp")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2gj"]
+render_priority = 0
+shader = ExtResource("3_1682g")
+
+[sub_resource type="BoxMesh" id="BoxMesh_piafs"]
+material = SubResource("ShaderMaterial_fe2gj")
+size = Vector3(1.68, 0.001, 2.39)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xftq7"]
+size = Vector3(1.93138, 0.0230064, 2.58766)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 8.06566, 4.35998, 1.97747)
+script = ExtResource("1_0al2e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rg1ch")
+}
+
+[node name="Основа_карты" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0)
+gi_mode = 0
+mesh = SubResource("BoxMesh_piafs")
+
+[node name="Название" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.169417)
+pixel_size = 0.001
+text = "Монитровка"
+font = ExtResource("4_hpd1h")
+font_size = 150
+outline_size = 30
+vertical_alignment = 2
+language = "ru_RU"
+
+[node name="ХП" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+font = ExtResource("4_hpd1h")
+font_size = 69
+language = "ru_RU"
+
+[node name="Время" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0.966249)
+font = ExtResource("4_hpd1h")
+font_size = 69
+language = "ru_RU"
+
+[node name="Атака" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.001, 0.966249)
+font = ExtResource("4_hpd1h")
+font_size = 69
+language = "ru_RU"
+
+[node name="Стоимость" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.0010004, -0.861358)
+font = ExtResource("4_hpd1h")
+font_size = 69
+language = "ru_RU"
+
+[node name="Описание" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.463249)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font = ExtResource("5_m883g")
+font_size = 65
+outline_size = 28
+autowrap_mode = 2
+width = 1500.0
+language = "ru_RU"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area3D" type="Area3D" parent="Основа_карты"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Основа_карты/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35186e-23, 0, -8.35186e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xftq7")
+
+[connection signal="input_event" from="Основа_карты/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_exited"]

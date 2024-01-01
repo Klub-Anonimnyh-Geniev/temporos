@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Стартовая_колода" load_steps=2 format=3 uid="uid://di5mqaqsvx53c"]
+
+[ext_resource type="Script" path="res://Ресурсы/СтартоваяКолода.gd" id="1_fidgn"]
+
+[resource]
+script = ExtResource("1_fidgn")
+"Колода" = Array[StringName]([&"ключ_фигура", &"монитровка", &"ключ_событие", &"зелье_бессм", &"мир_парадокс", &"врем_укрот", &"старик", &"мир_парадокс", &"старик", &"врем_укрот", &"ключ_событие", &"ключ_фигура", &"мир_парадокс", &"врем_укрот"])

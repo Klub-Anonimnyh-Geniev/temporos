@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Существо" load_steps=2 format=3 uid="uid://b8eiq2lfflr0i"]
+
+[ext_resource type="Script" path="res://Основа/Типы Карт/Существо.gd" id="1_uyrly"]
+
+[resource]
+script = ExtResource("1_uyrly")
+"Атака" = -28
+"Здоровье" = 4

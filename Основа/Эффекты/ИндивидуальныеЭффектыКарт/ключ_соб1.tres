@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Эффекты" load_steps=2 format=3 uid="uid://5nvnrh6mqnr1"]
+
+[ext_resource type="Script" path="res://Основа/Эффекты/БазаЭффектов/эффекты.gd" id="1_yxjqr"]
+
+[resource]
+script = ExtResource("1_yxjqr")
+"Наличие_описания" = false
+"Описание" = ""

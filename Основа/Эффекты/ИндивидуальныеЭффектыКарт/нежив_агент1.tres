@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Нетление" load_steps=2 format=3 uid="uid://5c5hiwn26jt2"]
+
+[ext_resource type="Script" path="res://Основа/Эффекты/БазаЭффектов/нетление.gd" id="1_hbp7a"]
+
+[resource]
+script = ExtResource("1_hbp7a")
+"Наличие_описания" = false
+"Описание" = ""

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Провокация" load_steps=2 format=3 uid="uid://dxl0cqoyd4wd0"]
+
+[ext_resource type="Script" path="res://Основа/Эффекты/БазаЭффектов/Провакация.gd" id="1_r2w0i"]
+
+[resource]
+script = ExtResource("1_r2w0i")
+"Наличие_описания" = false
+"Описание" = ""

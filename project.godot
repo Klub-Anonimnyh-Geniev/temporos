@@ -1,0 +1,147 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[Fmod]
+
+General/auto_initialize=true
+General/channel_count=1024
+General/is_live_update_enabled=true
+General/is_memory_tracking_enabled=false
+"Software Format/sample_rate"=48000
+"Software Format/speaker_mode"=3
+"Software Format/raw_speaker_count"=0
+General/default_listener_count=1
+General/banks_path="res://fmod"
+General/should_load_by_name=false
+DSP/dsp_buffer_size=512
+DSP/dsp_buffer_count=4
+"3D Settings/doppler_scale"=1.0
+"3D Settings/distance_factor"=1.0
+"3D Settings/rolloff_scale"=1.0
+
+[application]
+
+config/name="Темпорус"
+config/name_localized={
+"en_GB": "Temporos"
+}
+config/version="0.1"
+config/tags=PackedStringArray("разработка")
+run/main_scene="res://проверка.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
+config/icon="res://Ресурсы/Текстуры/карта.png"
+boot_splash/show_image.dev=false
+boot_splash/image.dev=""
+run/main_scene.dev=""
+
+[autoload]
+
+Data="*res://Основа/data.gd"
+GameManager="*res://Основа/Управление_Матчем.gd"
+CardManager="*res://Основа/Управление_картами.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
+[editor]
+
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="A:/Антитемпус/Темпорус/Тест_рука.avi"
+movie_writer/disable_vsync=true
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[fmod]
+
+settings/banks_path="res://фмод/Examples/Build/Desktop"
+settings/fmod_output_type=0
+settings/fmod_debug_flags=0
+settings/fmod_debug_mode=1
+settings/banks_to_load_at_startup=Array[String](["res://фмод/Examples/Build/Desktop/Dialogue_CN.bank", "res://фмод/Examples/Build/Desktop/Dialogue_EN.bank", "res://фмод/Examples/Build/Desktop/Dialogue_JP.bank", "res://фмод/Examples/Build/Desktop/Master.bank", "res://фмод/Examples/Build/Desktop/Master.strings.bank", "res://фмод/Examples/Build/Desktop/Music.bank", "res://фмод/Examples/Build/Desktop/SFX.bank", "res://фмод/Examples/Build/Desktop/Vehicles.bank", "res://фмод/Examples/Build/Desktop/VO.bank"])
+settings/banks_preload_samples=false
+settings/banks_flags=0
+settings/sample_rate=48000
+settings/speaker_mode=3
+settings/dsp_buffer_length=512
+settings/dsp_buffer_count=4
+settings/real_channel_count=32
+settings/virtual_channel_count=128
+settings/enable_live_update=true
+settings/live_update_port=9264
+settings/enable_memory_tracking=false
+settings/encryption_key=""
+settings/distance_scale_2d=1.0
+settings/init_with_3d_righthanded=true
+
+[gui]
+
+theme/custom_font="res://Ресурсы/Текстуры/centurygothic.ttf"
+
+[input]
+
+"ЛКМ"={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(331, 11),"global_position":Vector2(335, 54),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+"ПКМ"={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(98, 8),"global_position":Vector2(102, 51),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+"Перемешать колоду"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":1082,"echo":false,"script":null)
+]
+}
+"Выйти"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+"ВзятьКарту"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":1081,"echo":false,"script":null)
+]
+}
+"Очистить стол"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
+]
+}
+test={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":4,"position":Vector2(203, 13),"global_position":Vector2(207, 56),"factor":1.0,"button_index":3,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+"Взять карту противник"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":65,"physical_keycode":0,"key_label":0,"unicode":97,"echo":false,"script":null)
+]
+}
+"Консоль"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":47,"physical_keycode":47,"key_label":47,"unicode":46,"echo":false,"script":null)
+]
+}
+"Таб"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+
+[physics]
+
+3d/run_on_separate_thread=true
+3d/physics_engine="JoltPhysics3D"

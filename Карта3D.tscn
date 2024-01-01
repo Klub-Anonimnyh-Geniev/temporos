@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://e7n61h0covg5"]
+
+[ext_resource type="Script" path="res://Основа/Карта.gd" id="1_3hnji"]
+[ext_resource type="FontFile" uid="uid://cuf6encmyqm8c" path="res://Ресурсы/Текстуры/centurygothic.ttf" id="3_jiutj"]
+[ext_resource type="Shader" path="res://Карта3D.gdshader" id="3_o430j"]
+[ext_resource type="FontFile" uid="uid://d2ow7xpqrlpki" path="res://Ресурсы/Текстуры/centurygothic_bold.ttf" id="3_xau8i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2gj"]
+render_priority = 0
+shader = ExtResource("3_o430j")
+
+[sub_resource type="BoxMesh" id="BoxMesh_piafs"]
+material = SubResource("ShaderMaterial_fe2gj")
+size = Vector3(1.68, 0.001, 2.39)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xftq7"]
+size = Vector3(1.93138, 0.0230064, 2.58766)
+
+[sub_resource type="Animation" id="Animation_u31lb"]
+resource_name = "ф"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"test_print"
+}, {
+"args": [],
+"method": &"положить_карту_в_руку"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_64ogg"]
+_data = {
+"ф": SubResource("Animation_u31lb")
+}
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+script = ExtResource("1_3hnji")
+
+[node name="Основа_карты" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0)
+gi_mode = 0
+mesh = SubResource("BoxMesh_piafs")
+
+[node name="Название" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.169417)
+pixel_size = 0.001
+text = "Монитровка"
+font = ExtResource("3_jiutj")
+font_size = 150
+outline_size = 30
+vertical_alignment = 2
+language = "ru_RU"
+
+[node name="ХП" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+font = ExtResource("3_jiutj")
+font_size = 69
+language = "ru_RU"
+
+[node name="Прочность" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+font = ExtResource("3_jiutj")
+font_size = 69
+language = "ru_RU"
+
+[node name="Время" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0.966249)
+font = ExtResource("3_jiutj")
+font_size = 69
+language = "ru_RU"
+
+[node name="Атака" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.001, 0.966249)
+font = ExtResource("3_jiutj")
+font_size = 69
+language = "ru_RU"
+
+[node name="Стоимость" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.0010004, -0.861358)
+font = ExtResource("3_jiutj")
+font_size = 69
+language = "ru_RU"
+
+[node name="Описание" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.463249)
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font = ExtResource("3_xau8i")
+font_size = 65
+outline_size = 28
+autowrap_mode = 2
+width = 1500.0
+language = "ru_RU"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35186e-23, 0, -8.35186e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xftq7")
+
+[node name="жизнь" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Плеер" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_64ogg")
+}
+
+[connection signal="input_event" from="Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
