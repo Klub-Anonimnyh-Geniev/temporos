@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Заклинание" load_steps=2 format=3 uid="uid://d1x16kau8qcja"]
+
+[ext_resource type="Script" path="res://Скрипты/Основа/Типы Карт/Заклинания.gd" id="1_85cbq"]
+
+[resource]
+script = ExtResource("1_85cbq")

@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Эффекты" load_steps=2 format=3 uid="uid://c3v7t3dovwcwi"]
-
-[ext_resource type="Script" path="res://Основа/Эффекты/БазаЭффектов/эффекты.gd" id="1_8n5ns"]
-
-[resource]
-script = ExtResource("1_8n5ns")
-"Наличие_описания" = true
-"Описание" = "Выбранное сущестов получает *Нетление*."
