@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Эффекты" load_steps=2 format=3 uid="uid://bsqqgjlscytmq"]
-
-[ext_resource type="Script" path="res://Основа/Эффекты/БазаЭффектов/эффекты.gd" id="1_r3f0r"]
-
-[resource]
-script = ExtResource("1_r3f0r")
-"Наличие_описания" = true
-"Описание" = "Если в конце вашего хода у вас осталось 3 или больше маны призывает другого \"Укротителя времени\""
