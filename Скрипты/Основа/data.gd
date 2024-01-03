@@ -1,6 +1,7 @@
 extends Node
-class_name БазаДанных
 ##Этот файл подгружает данные обо всех карт
+class_name БазаДанных
+
 
 
 
@@ -13,7 +14,7 @@ func _ready():
 
 
 
-func импорт_даты(путь: String): ## Данный метод открывает файл [JSON] по заданному [param путь]
+func импорт_даты(путь: String): ## Данный метод открывает файл [JSON] по заданному [param пути]
 	var дата_файл = FileAccess.open(путь, FileAccess.READ)
 	var дата_json = JSON.parse_string(дата_файл.get_as_text())
 	

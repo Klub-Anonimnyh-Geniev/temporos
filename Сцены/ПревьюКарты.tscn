@@ -121,6 +121,9 @@ metadata/_edit_use_anchors_ = true
 transform = Transform3D(1, 0, 0, 0, 1, -8.35186e-23, 0, -8.35186e-23, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_xftq7")
 
+[node name="жизнь" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="input_event" from="Основа_карты/Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_exited"]

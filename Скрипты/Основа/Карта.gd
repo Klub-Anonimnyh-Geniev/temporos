@@ -8,22 +8,28 @@ class_name Карта
 
 
 
-
+var я = self
 ## Сигнал разыгрывания.
 ## В будущем, карта будет посылать этот сигнал в случае своего разыгрывания [b]из руки[/b].
 ##
 ## @experimental
-signal меня_разыграли
-
+signal меня_разыграли(разыгрываемый)
+## Сигнал смерти.
+## Отсылается Эффектам для дальнейшего срабатываня
+##
+## @experimental
+signal умер(умерший)
 
 enum Состояние_карты {## Обозначение текущей позиции/роли карты.
 	нигде, ## Карта находится в игре, однако не учавствует в игровой механике как таковой.
+	в_колоде, ## Карта в коложе
+	кладбище, ## Карта на кладбище
 	в_руке, ## Карта находится у нас в руке.
 	в_руке_проотивника, ## Карта находится в руке нашего противника.
 	разыгрывается, ## Непосредственно в данный момент карта разыгрывается из руки.
-	на_столе ## Карта находится на столе, т.е. становится токеном.
+	на_столе, ## Карта находится на столе, т.е. становится токеном.
 	}
-var состояние: Состояние_карты ## Переменная, хранящая в себе [enum Состояние_карты]
+var состояние: Состояние_карты = Состояние_карты.нигде ## Переменная, хранящая в себе [enum Состояние_карты]
 
 
 
@@ -38,31 +44,36 @@ var Возраст: int
 var Доп_эффект: Array[Эффекты] ## Массив допольнительных эффектов карты. Применяются после изначальных. Состоит из [Эффекты]
 var Описание_карты: String
 const NameRatio = 2500 ## Постоянная соотношения размера текста карты к количеству символов
-var DiscFontSize: int
-var NameFontSize: int
-var новая_позиция : Vector3
-var новый_поворот : Vector3
-var изменение_позиции: bool = false
-var Кривая_карты_в_руке: Curve
-var меня_хотят_разыграть = false
-@onready var превью = get_tree().current_scene.find_child("Превьюшка", true, false)
-@onready var превьюКарты = get_tree().current_scene.find_child("Превьюха", true, false)
-var preview = false
-@onready var раб_поз = position
-var Таймер_жизнь: Timer
-var есть_возрасть: bool = false
-func инициализация(ID: StringName = ""):
-	id = ID
+var DiscFontSize: int ## Переменная размера шрифта для описания карты
+var NameFontSize: int ## Переменная размера шрифта для названия карты
+var новая_позиция : Vector3 ## Рабочая переменная положения карты для метода [method положение_карты]
+var новый_поворот : Vector3 ## Рабочая переменная поворота карты для метода [method положение_карты]
+var изменение_позиции: bool = false ## Изменяет ли сейчас позицию карта
+var Кривая_карты_в_руке: Curve ## Кривая для расчёта положения карты в руке
+var меня_хотят_разыграть = false ## Переменная состояния между [enum Состояние_карты] в руке и разыгрывания
+@onready var превью = get_tree().current_scene.find_child("Превьюшка", true, false) ## Ссылка на визуализатор превью карты
+@onready var превьюКарты = get_tree().current_scene.find_child("Превьюха", true, false) ## Ссылка на ноду [ПревьюКарты] в сцене
+var preview = false ## Отображается ли сейчас превью для этой карты
+@onready var раб_поз = position ## Переменная для изменения положения только видимой части карты, а не всей её сцены
+var Таймер_жизнь: Timer ## Индивидуальный таймер отсчёта жизни карты
+var есть_возраст: bool = false ## Имеется ли вообще возраст у этой карты
+
+func инициализация(ID: StringName = "", Доп_эффекты: Array = []): ## Метод, который заменяет урезанный в возможностях встроенный метод [method Object._init]
+	## устанавливаем id карты, а затем и все остальные переменные
+	id = ID 
 	Название = Data.дата_карт[ID]["name"]
-	print(Название)
 	Описание_карты = Data.дата_карт[ID]["описание"]
-	Тип_карты = load(Data.дата_карт[ID]["тип"])
+	Тип_карты = load(Data.дата_карт[ID]["тип"]).new() as Категории_карт
+	print(self)
+	Тип_карты.подсоединение(self)
 	Редкость = Data.дата_карт[ID]["редкость"]
 	Стоимость = Data.дата_карт[ID]["стоимость"]
 	for e in Data.дата_карт[ID]["эффекты"]:
-		ЭФФЕКТЫ.append(load(e))
-		
-		
+		ЭФФЕКТЫ.append(load(e).new())
+		if ЭФФЕКТЫ.back().has_method("подсоединение"):
+			ЭФФЕКТЫ.back().подсоединение.call(self)
+	Доп_эффект.append_array(Доп_эффекты)
+	
 	$"Основа_карты/Стоимость".text = str(Стоимость) 
 	if Описание_карты != null:
 		$"Основа_карты/Описание".text = Описание_карты
@@ -81,7 +92,7 @@ func инициализация(ID: StringName = ""):
 			$"Основа_карты/Атака".text = str(Тип_карты.Атака)
 			Тип_карты.Здоровье = Data.дата_карт[ID]["здоровье"]
 			$"Основа_карты/ХП".text = str(Тип_карты.Здоровье)
-			есть_возрасть = true
+			есть_возраст = true
 			Возраст = Data.дата_карт[ID]["время жизни"]
 			Таймер_жизнь = $"жизнь"
 			Таймер_жизнь.timeout.connect(таймер_смерть)
@@ -94,19 +105,24 @@ func инициализация(ID: StringName = ""):
 			$"Основа_карты/Прочность".text = str(Тип_карты.Прочность)
 		Тип_карты.ТИП_КАРТЫ.ЗАКЛИНАНИЕ:
 			pass
-func Discfunc(x):
-	if x <= 170:
+func положение_карты():
+	if $"Основа_карты".position != раб_поз:
+		$"Основа_карты".position = $"Основа_карты".position.lerp(раб_поз, .3)
+	if position != новая_позиция:
+		position = position.lerp(новая_позиция, .3)
+	if rotation != новый_поворот:
+		rotation_degrees = rotation_degrees.lerp(новый_поворот, .3)
+func Discfunc(количество_символов: int) -> int:
+	if количество_символов <= 170:
 		return 75
 	else:
 		return 65
-func Namefunc(x):
-	if x <= 15:
+func Namefunc(количество_символов: int) -> int: 
+	if количество_символов <= 15:
 		return 150
 	else:
-		var y = -2.5*x+175
-		return y
+		return -2.5*количество_символов+175
 func положить_карту_в_руку():
-	print("aaa")
 	if CardManager.КартыВРуке.size() < 10:
 		for i in ЭФФЕКТЫ:
 			if i.has_method("эффект_при_взятии") == true:
@@ -115,21 +131,16 @@ func положить_карту_в_руку():
 	else:
 		сжигание_карты()
 func сжигание_карты():
-	if CardManager.КартыВРуке.find(self) != -1:
-		CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
-	queue_free()
+	смерть()
+	
 func карту_в_руку():
 	CardManager.КартыВРуке.append(self)
 	CardManager.позиции_в_руке()
 	состояние = Состояние_карты.в_руке
-	print("aaa")
+	reparent(get_tree().current_scene.find_child("Рука1", true, false))
+	set_meta("polojeniye", состояние)
 func _process(_delta):
-	if $"Основа_карты".position != раб_поз:
-		$"Основа_карты".position = $"Основа_карты".position.lerp(раб_поз, .3)
-	if position != новая_позиция:
-		position = position.lerp(новая_позиция, .3)
-	if rotation != новый_поворот:
-		rotation_degrees = rotation_degrees.lerp(новый_поворот, .3)
+	положение_карты()
 	match состояние:
 		Состояние_карты.разыгрывается:
 			Мышь3D()
@@ -175,7 +186,7 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 			Состояние_карты.разыгрывается:
 				if CardManager.желание_разыграть:
 					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-							розыгрыш_карты()
+							меня_разыграли.emit(self)
 							Input.action_release("ЛКМ")
 				else:
 					if Input.is_action_just_pressed("ЛКМ"):
@@ -189,30 +200,20 @@ func Мышь3D():
 	
 	var камера: Camera3D = get_tree().current_scene.find_child("КАМЕРА", true, false)
 	var мышь = get_viewport().get_mouse_position()
-	print(мышь)
 	новая_позиция = камера.project_position(мышь, 15)
 	новый_поворот = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, false).rotation
 
 func вкл_превью():
+	preview = true
 	превьюКарты.ресет()
 	превьюКарты.создание_карты(id, Название, Описание_карты, Тип_карты, Редкость, ЭФФЕКТЫ, Стоимость, int($"Основа_карты/Прочность".get_text()), int($"Основа_карты/Атака".get_text()), int($"Основа_карты/ХП".get_text()), int($"Основа_карты/Время".get_text()))
 	
 	превью.position = get_tree().current_scene.find_child("КАМЕРА", true, false).unproject_position(position)
 	превью.visible = true
 func выкл_превью():
+	preview = false
 	превью.visible = false
 	pass
-func розыгрыш_карты():
-	if GameManager.Карты1.size() < 7:
-		GameManager.манаИгрок1 -= Стоимость
-		CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
-		CardManager.preview = true
-		состояние = Состояние_карты.на_столе
-		GameManager.Карты1.append(self)
-		GameManager.позицияТокенов()
-		CardManager.обновление_стола()
-		if есть_возрасть:
-			Таймер_жизнь.start()
 
 func нерозыгрыш_карты():
 	CardManager.обновление_стола()
@@ -247,12 +248,22 @@ func таймер_смерть():
 		if preview == true:
 			вкл_превью()
 	else:
-		превью.visible = false
-		GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
-		GameManager.позицияТокенов()
-		queue_free()
+		
+		смерть()
 	pass
 func test_print():
-	новая_позиция = get_tree().current_scene.find_child("позКолода1", true, false).position
-	print(get_tree().current_scene.find_child("позКолода1", true, false).position)
-	новый_поворот = get_tree().current_scene.find_child("позКолода1", true, false).rotation
+	pass
+func смерть():
+	превью.visible = false
+	match состояние: 
+		Состояние_карты.на_столе:
+			GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
+			GameManager.позицияТокенов()
+			умер.emit()
+		Состояние_карты.в_руке:
+			CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
+			CardManager.обновление_стола()
+	состояние = Состояние_карты.кладбище
+	reparent(get_tree().current_scene.find_child("Кладбище", true, false))
+	
+	visible = false
