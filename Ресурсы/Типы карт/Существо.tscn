@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byuycfifqco8o"]
+
+[ext_resource type="Script" path="res://Скрипты/Основа/Типы Карт/Существо.gd" id="1_vcmkd"]
+
+[node name="Существо" type="Node"]
+script = ExtResource("1_vcmkd")

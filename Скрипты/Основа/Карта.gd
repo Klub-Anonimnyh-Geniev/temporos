@@ -13,12 +13,12 @@ var я = self
 ## В будущем, карта будет посылать этот сигнал в случае своего разыгрывания [b]из руки[/b].
 ##
 ## @experimental
-signal меня_разыграли
+signal меня_разыграли(разыгрываемый)
 ## Сигнал смерти.
 ## Отсылается Эффектам для дальнейшего срабатываня
 ##
 ## @experimental
-signal умер
+signal умер(умерший)
 
 enum Состояние_карты {## Обозначение текущей позиции/роли карты.
 	нигде, ## Карта находится в игре, однако не учавствует в игровой механике как таковой.
@@ -63,11 +63,13 @@ func инициализация(ID: StringName = "", Доп_эффекты: Arra
 	id = ID 
 	Название = Data.дата_карт[ID]["name"]
 	Описание_карты = Data.дата_карт[ID]["описание"]
-	Тип_карты = load(Data.дата_карт[ID]["тип"])
+	Тип_карты = load(Data.дата_карт[ID]["тип"]).new() as Категории_карт
+	print(self)
+	Тип_карты.подсоединение(self)
 	Редкость = Data.дата_карт[ID]["редкость"]
 	Стоимость = Data.дата_карт[ID]["стоимость"]
 	for e in Data.дата_карт[ID]["эффекты"]:
-		ЭФФЕКТЫ.append(load(e))
+		ЭФФЕКТЫ.append(load(e).new())
 		if ЭФФЕКТЫ.back().has_method("подсоединение"):
 			ЭФФЕКТЫ.back().подсоединение.call(self)
 	Доп_эффект.append_array(Доп_эффекты)
@@ -184,7 +186,7 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 			Состояние_карты.разыгрывается:
 				if CardManager.желание_разыграть:
 					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-							розыгрыш_карты()
+							меня_разыграли.emit(self)
 							Input.action_release("ЛКМ")
 				else:
 					if Input.is_action_just_pressed("ЛКМ"):
@@ -212,20 +214,6 @@ func выкл_превью():
 	preview = false
 	превью.visible = false
 	pass
-func розыгрыш_карты():
-	if GameManager.Карты1.size() < 7:
-		GameManager.манаИгрок1 -= Стоимость
-		CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
-		CardManager.preview = true
-		состояние = Состояние_карты.на_столе
-		set_meta("polojeniye", состояние)
-		GameManager.Карты1.append(self)
-		print(GameManager.Карты1.find(self))
-		reparent(get_tree().current_scene.find_child("Карты1", true, false))
-		GameManager.позицияТокенов()
-		CardManager.обновление_стола()
-		if есть_возраст:
-			Таймер_жизнь.start()
 
 func нерозыгрыш_карты():
 	CardManager.обновление_стола()

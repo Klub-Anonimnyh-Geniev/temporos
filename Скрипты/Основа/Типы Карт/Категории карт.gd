@@ -1,14 +1,19 @@
-extends Resource
+extends Node
 class_name Категории_карт
-
+var эта_карта: Карта
 enum ТИП_КАРТЫ {СУЩЕСТВО, ЗАКЛИНАНИЕ, АРТЕФАКТ}
 
 var Тип_карты: ТИП_КАРТЫ
-
-
+func _setup_local_to_scene():
+	эта_карта = null
+func подсоединение(путь: Карта):
+	print(путь)
+	путь.меня_разыграли.connect(розыгрыш_карты)
+	эта_карта = путь
 func _init():
 	
 	
 	
 	pass
-
+func розыгрыш_карты(карта):
+	pass

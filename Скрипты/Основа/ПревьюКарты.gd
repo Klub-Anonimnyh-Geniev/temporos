@@ -5,14 +5,14 @@ class_name ПревьюКарты
 
 
 
-@export var id: StringName
-@export var Название: StringName
-@export var Тип_карты: Категории_карт
+var id: StringName
+var Название: StringName
+var Тип_карты: Категории_карт
 var Редкость: StringName
-@export var ЭФФЕКТЫ: Array[Эффекты]
-@export var Стоимость: int
-@export var Возраст: int
-@export var Доп_эффект: Array[Эффекты] = []
+var ЭФФЕКТЫ: Array[Эффекты]
+var Стоимость: int
+var Возраст: int
+var Доп_эффект: Array[Эффекты] = []
 var Описание_карты: String
 
 
