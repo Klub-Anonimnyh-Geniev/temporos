@@ -13,14 +13,14 @@ func _init():
 	
 func розыгрыш_карты(карта):
 	if GameManager.Карты1.size() < 7:
-		GameManager.манаИгрок1 -= эта_карта.Стоимость
+		GameManager.манаИгрок1 -= карта.Стоимость
 		CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(карта))
 		CardManager.preview = true
-		эта_карта.состояние = Карта.Состояние_карты.на_столе
-		set_meta("polojeniye", эта_карта.состояние)
-		GameManager.Карты1.append(эта_карта)
-		эта_карта.reparent(эта_карта.get_tree().current_scene.find_child("Карты1", true, false))
+		карта.состояние = Карта.Состояние_карты.на_столе
+		set_meta("polojeniye", карта.состояние)
+		GameManager.Карты1.append(карта)
+		карта.reparent(карта.get_tree().current_scene.find_child("Карты1", true, false))
 		GameManager.позицияТокенов()
 		CardManager.обновление_стола()
-		if эта_карта.есть_возраст:
-			эта_карта.Таймер_жизнь.start()
+		if карта.есть_возраст:
+			карта.Таймер_жизнь.start()
