@@ -129,9 +129,7 @@ func положить_карту_в_руку():
 	else:
 		сжигание_карты()
 func сжигание_карты():
-	состояние = Состояние_карты.кладбище
-	reparent(get_tree().current_scene.find_child("Кладбище", true, false))
-	visible=false
+	смерть()
 	
 func карту_в_руку():
 	CardManager.КартыВРуке.append(self)
@@ -269,9 +267,14 @@ func test_print():
 	pass
 func смерть():
 	превью.visible = false
-	GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
-	GameManager.позицияТокенов()
-	умер.emit()
+	match состояние: 
+		Состояние_карты.на_столе:
+			GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
+			GameManager.позицияТокенов()
+			умер.emit()
+		Состояние_карты.в_руке:
+			CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
+			CardManager.обновление_стола()
 	состояние = Состояние_карты.кладбище
 	reparent(get_tree().current_scene.find_child("Кладбище", true, false))
 	
