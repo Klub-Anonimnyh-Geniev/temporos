@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Провокация" load_steps=2 format=3 uid="uid://d2kafsmufnd0k"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c8raburl7j1tn"]
 
-[ext_resource type="Script" path="res://Скрипты/Основа/Эффекты/БазаЭффектов/Провакация.gd" id="1_rnc5l"]
+[ext_resource type="Script" path="res://Скрипты/Основа/Эффекты/Индивидуальные эффекты/старик1.gd" id="1_fdn6n"]
 
 [resource]
-script = ExtResource("1_rnc5l")
+script = ExtResource("1_fdn6n")
 "Наличие_описания" = false
 "Описание" = ""

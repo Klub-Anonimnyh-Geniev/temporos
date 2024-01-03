@@ -218,4 +218,6 @@ near = 0.175
 [node name="кд мана" type="Timer" parent="."]
 wait_time = 0.05
 
+[node name="Кладбище" type="Node" parent="."]
+
 [editable path="CanvasLayer/Node2D"]
