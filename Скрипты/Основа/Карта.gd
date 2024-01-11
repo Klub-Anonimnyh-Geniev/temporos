@@ -6,8 +6,6 @@ class_name Карта
 ## Класс [Карта] забирает на себя роль самостоятельного игрового юнита,[br]
 ## Способного быть картой, токеном, оружием, артефактом и т.п
 
-
-
 var я = self
 ## Сигнал разыгрывания.
 ## В будущем, карта будет посылать этот сигнал в случае своего разыгрывания [b]из руки[/b].
@@ -156,13 +154,14 @@ func _on_area_3d_mouse_entered():
 				if CardManager.preview:
 					вкл_превью()
 func _on_area_3d_mouse_exited():
+	
 	match состояние:
 			Состояние_карты.в_руке:
 				раб_поз.z += 1
 				CardManager.обновление_стола()
-				превью.visible = false
+				выкл_превью()
 			Состояние_карты.на_столе:
-				превью.visible = false
+				выкл_превью()
 func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 	var поз_мышь: Vector2
 	var поз_мыши_2: Vector2
@@ -204,10 +203,10 @@ func Мышь3D():
 	новый_поворот = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, false).rotation
 
 func вкл_превью():
-	preview = true
+	
 	превьюКарты.ресет()
 	превьюКарты.создание_карты(id, Название, Описание_карты, Тип_карты, Редкость, ЭФФЕКТЫ, Стоимость, int($"Основа_карты/Прочность".get_text()), int($"Основа_карты/Атака".get_text()), int($"Основа_карты/ХП".get_text()), int($"Основа_карты/Время".get_text()))
-	
+	preview = true
 	превью.position = get_tree().current_scene.find_child("КАМЕРА", true, false).unproject_position(position)
 	превью.visible = true
 func выкл_превью():
@@ -245,7 +244,7 @@ func таймер_смерть():
 	if Возраст > 1:
 		Возраст -= 1
 		$"Основа_карты/Время".text = str(Возраст)
-		if preview == true:
+		if preview:
 			вкл_превью()
 	else:
 		

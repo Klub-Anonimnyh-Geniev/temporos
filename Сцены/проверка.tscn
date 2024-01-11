@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxtakisiee675"]
-
-[ext_resource type="Script" path="res://Скрипты/проверка.gd" id="1_btm7b"]
+[gd_scene load_steps=3 format=3 uid="uid://cxtakisiee675"]
 
 [sub_resource type="Animation" id="Animation_iyyca"]
 resource_name = "a"
@@ -24,8 +22,7 @@ _data = {
 "a": SubResource("Animation_iyyca")
 }
 
-[node name="a" type="Node3D"]
-script = ExtResource("1_btm7b")
+[node name="Матч" type="Node"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

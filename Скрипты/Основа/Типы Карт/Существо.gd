@@ -22,5 +22,6 @@ func розыгрыш_карты(карта):
 		карта.reparent(карта.get_tree().current_scene.find_child("Карты1", true, false))
 		GameManager.позицияТокенов()
 		CardManager.обновление_стола()
+		карта.preview = false
 		if карта.есть_возраст:
 			карта.Таймер_жизнь.start()

@@ -16,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="стадия" type="Node" parent="Control"]
+process_mode = 4
 
 [node name="Стадия_текст" type="Label" parent="Control/стадия"]
 offset_left = 815.0
@@ -24,6 +25,7 @@ offset_right = 923.0
 offset_bottom = 328.0
 text = "Стадия_текст"
 script = ExtResource("1_07pna")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="Control/стадия"]
 anchors_preset = 8
@@ -39,6 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Следующая стадия"
 script = ExtResource("1_mswqn")
+metadata/_edit_use_anchors_ = true
 
 [node name="мана" type="Node" parent="Control"]
 
