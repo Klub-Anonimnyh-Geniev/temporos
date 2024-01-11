@@ -34,7 +34,7 @@ config/name_localized={
 }
 config/version="0.1"
 config/tags=PackedStringArray("разработка")
-run/main_scene="res://Сцены/ядро.tscn"
+run/main_scene="res://Сцены/проверка.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Ресурсы/Текстуры и шрифты/карта.png"
