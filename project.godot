@@ -34,7 +34,7 @@ config/name_localized={
 }
 config/version="0.1"
 config/tags=PackedStringArray("разработка")
-run/main_scene="res://Сцены/проверка.tscn"
+run/main_scene="res://Сцены/ядро.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://Ресурсы/Текстуры и шрифты/карта.png"
@@ -47,6 +47,7 @@ run/main_scene.dev=""
 Data="*res://Скрипты/Основа/data.gd"
 GameManager="*res://Скрипты/Основа/Управление_Матчем.gd"
 CardManager="*res://Скрипты/Основа/Управление_картами.gd"
+NetMenager="*res://Скрипты/Основа/управление_сетью.gd"
 
 [display]
 

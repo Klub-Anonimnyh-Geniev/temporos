@@ -3,9 +3,11 @@ var лобби = preload("res://Сцены/проверка.tscn")
 var ядро 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(ядро)
+	NetMenager.начало_игры.connect(func(): queue_free())
 	%"выход".pressed.connect(GameManager.закрыть_игру)
 	%"создать_лобби".pressed.connect(создать_лобби)
+	%"зайти_в_лобби".pressed.connect(вход_в_лобби)
+	%"начать".pressed.connect(func(): NetMenager.начать_игру.rpc())
 	pass # Replace with function body.
 
 
@@ -14,8 +16,15 @@ func _process(delta):
 	pass
 
 func создать_лобби():
-	var матч = лобби.instantiate()
-	ядро.add_child(матч)
-	GameManager.подготовить_матч()
-	queue_free()
+	
+	#
+	NetMenager.создание_лобби()
+	%"начать".disabled = false
+	%"создать_лобби".disabled=true
+	%"зайти_в_лобби".disabled=true
+func вход_в_лобби():
+	NetMenager.зайти_в_лобби()
+	%"начать".disabled = false
+	%"создать_лобби".disabled=true
+	%"зайти_в_лобби".disabled=true
 	

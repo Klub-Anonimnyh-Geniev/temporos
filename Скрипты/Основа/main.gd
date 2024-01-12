@@ -1,7 +1,7 @@
 extends Node
-var айди_игрок
-var пользователь
+
 var меню = preload("res://Сцены/меню.tscn")
+var игра = preload("res://Сцены/проверка.tscn")
 @onready var поле_логин: LineEdit = $"вход/VBoxContainer/логин"
 @onready var кнопка_входа: Button = $"вход/VBoxContainer/кнопка_вход"
 func _ready():
@@ -13,12 +13,11 @@ func вход(ввод: String):
 	if !ввод.is_empty():
 		var вход = Data.вход_пользователя(ввод)
 		if вход[0]:
-			пользователь = вход[1]
+			NetMenager.мой_логин = вход[1].get("ник")
 			загрузка_меню()
 		else:
 			print("Ошибка: ", вход[1])
 func загрузка_меню():
-	print("хуй")
 	$"вход".hide()
 	var сцена = меню.instantiate()
 	сцена.ядро = self

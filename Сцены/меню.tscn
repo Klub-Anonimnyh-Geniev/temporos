@@ -76,3 +76,13 @@ unique_name_in_owner = true
 layout_mode = 2
 keep_pressed_outside = true
 text = "Выход"
+
+[node name="начать" type="Button" parent="Интерфейс_меню/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 252.0
+offset_top = 96.0
+offset_right = 387.0
+offset_bottom = 184.0
+disabled = true
+text = "начать"

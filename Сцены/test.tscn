@@ -1,7 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://vpjbek0tqtr5"]
+[gd_scene load_steps=2 format=3 uid="uid://vpjbek0tqtr5"]
 
-[ext_resource type="Script" path="res://Скрипты/Стадия_текст.gd" id="1_07pna"]
-[ext_resource type="Script" path="res://Скрипты/кнопка_стадия.gd" id="1_mswqn"]
 [ext_resource type="Script" path="res://Скрипты/консоль.gd" id="3_yy2g2"]
 
 [node name="Node2D" type="Node2D"]
@@ -14,34 +12,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="стадия" type="Node" parent="Control"]
-process_mode = 4
-
-[node name="Стадия_текст" type="Label" parent="Control/стадия"]
-offset_left = 815.0
-offset_top = 302.0
-offset_right = 923.0
-offset_bottom = 328.0
-text = "Стадия_текст"
-script = ExtResource("1_07pna")
-metadata/_edit_use_anchors_ = true
-
-[node name="Button" type="Button" parent="Control/стадия"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 383.0
-offset_top = -24.0
-offset_right = 546.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Следующая стадия"
-script = ExtResource("1_mswqn")
-metadata/_edit_use_anchors_ = true
 
 [node name="мана" type="Node" parent="Control"]
 
