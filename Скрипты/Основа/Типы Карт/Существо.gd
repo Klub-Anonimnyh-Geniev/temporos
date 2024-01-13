@@ -25,3 +25,18 @@ func розыгрыш_карты(карта):
 		карта.preview = false
 		if карта.есть_возраст:
 			карта.Таймер_жизнь.start()
+		CardManager.противник_разыграл.rpc(карта.я)
+
+func розыгрыш_противником(карта):
+	if GameManager.Карты1.size() < 7:
+		GameManager.манаИгрок1 -= карта.Стоимость
+		CardManager.КартыВРукеПротивника.remove_at(CardManager.КартыВРукеПротивника.find(карта))
+		карта.состояние = Карта.Состояние_карты.на_столе
+		set_meta("polojeniye", карта.состояние)
+		GameManager.Карты2.push_front(карта)
+		карта.reparent(карта.get_tree().current_scene.find_child("Карты2", true, false))
+		GameManager.токеныПротивника()
+		CardManager.рукаПротивника()
+		карта.preview = false
+		if карта.есть_возраст:
+			карта.Таймер_жизнь.start()

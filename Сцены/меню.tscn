@@ -41,6 +41,14 @@ theme_override_constants/margin_bottom = 100
 [node name="Кнопки_меню" type="VBoxContainer" parent="Интерфейс_меню/Control/MarginContainer"]
 layout_mode = 2
 
+[node name="IP" type="LineEdit" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 3.53
+text = "127.0.0.1"
+placeholder_text = "IP"
+expand_to_text_length = true
+
 [node name="создать_лобби" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
 layout_mode = 2
 

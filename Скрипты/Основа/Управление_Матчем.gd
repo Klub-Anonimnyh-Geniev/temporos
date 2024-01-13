@@ -29,10 +29,14 @@ func позицияТокенов():
 	var позСтола = get_tree().current_scene.find_child("Карты1", true, false).find_child("позКарт").position
 	for токен in Карты1:
 		токен.новая_позиция = позСтола + Vector3(2 * Карты1.find(токен) - Карты1.size()+1,0,0)
-		
+	
 	pass
 
 func токеныПротивника():
+	var позСтолаПротивник = get_tree().current_scene.find_child("Карты2", true, false).find_child("позКарт").position
+	for токен in Карты2:
+		токен.новая_позиция = позСтолаПротивник + Vector3(2 * Карты2.find(токен) - Карты2.size()+1,0,0)
+			
 	pass
 
 func _process(_delta):

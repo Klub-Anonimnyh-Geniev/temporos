@@ -5,6 +5,7 @@ class_name Сеть extends Node
 ##
 ## @experimental
 signal начало_игры
+var мой_ник
 var мой_логин
 var мой_id
 var peer
@@ -20,6 +21,7 @@ func _ready():
 func игрок_подключился(id):
 	pass
 func игрок_отключился(id):
+	get_tree().quit()
 	pass
 func связь_с_сервером():
 	отсылка_информации_об_игроке.rpc_id(1,мой_id, мой_логин)
@@ -56,6 +58,9 @@ func создание_лобби(тип_игры = "стандарт"):
 func зайти_в_лобби():
 	peer = ENetMultiplayerPeer.new()
 	var клиент = peer.create_client(айпи, порт)
+	if клиент != OK:
+		print(клиент)
+		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
 	мой_id = multiplayer.get_unique_id()

@@ -38,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.888, 4.211)
 gizmo_extents = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Рука1/позРуки"]
+visible = false
 mesh = SubResource("SphereMesh_i7bye")
 
 [node name="Рука2" type="Node" parent="."]
@@ -48,6 +49,7 @@ rotation_order = 0
 gizmo_extents = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Рука2/позРуки"]
+visible = false
 mesh = SubResource("SphereMesh_i7bye")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -140,17 +142,19 @@ omni_range = 15.996
 [node name="Карты1" type="Node" parent="КартыНаСтоле"]
 
 [node name="позКарт" type="Marker3D" parent="КартыНаСтоле/Карты1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85038, 0.308805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85038, 1.08116)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="КартыНаСтоле/Карты1/позКарт"]
+visible = false
 mesh = SubResource("SphereMesh_i7bye")
 
 [node name="Карты2" type="Node" parent="КартыНаСтоле"]
 
 [node name="позКарт" type="Marker3D" parent="КартыНаСтоле/Карты2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85038, -2.05835)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85038, -2.78481)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="КартыНаСтоле/Карты2/позКарт"]
+visible = false
 mesh = SubResource("SphereMesh_i7bye")
 
 [node name="Колода1" type="Node" parent="КартыНаСтоле"]
@@ -219,5 +223,14 @@ near = 0.175
 wait_time = 0.05
 
 [node name="Кладбище" type="Node" parent="."]
+
+[node name="КладбищеПротивник" type="Node" parent="."]
+
+[node name="розыгрыш" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -8.35189e-23, 0, -8.35188e-23, 1, 4.74476, 5.27601, -3.717)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="розыгрыш"]
+mesh = SubResource("SphereMesh_i7bye")
 
 [editable path="CanvasLayer/Node2D"]

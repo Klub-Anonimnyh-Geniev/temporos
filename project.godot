@@ -32,7 +32,7 @@ config/name="Темпорус"
 config/name_localized={
 "en_GB": "Temporos"
 }
-config/version="0.1"
+config/version="0.2"
 config/tags=PackedStringArray("разработка")
 run/main_scene="res://Сцены/ядро.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
@@ -40,7 +40,7 @@ boot_splash/show_image=false
 config/icon="res://Ресурсы/Текстуры и шрифты/карта.png"
 boot_splash/show_image.dev=false
 boot_splash/image.dev=""
-run/main_scene.dev=""
+run/main_scene.dev="res://Сцены/ядро.tscn"
 
 [autoload]
 

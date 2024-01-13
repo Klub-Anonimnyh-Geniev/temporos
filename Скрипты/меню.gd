@@ -8,6 +8,7 @@ func _ready():
 	%"создать_лобби".pressed.connect(создать_лобби)
 	%"зайти_в_лобби".pressed.connect(вход_в_лобби)
 	%"начать".pressed.connect(func(): NetMenager.начать_игру.rpc())
+	$"Интерфейс_меню/Control/MarginContainer/Кнопки_меню/IP".text_changed.connect(ввод_айпи.bind())
 	pass # Replace with function body.
 
 
@@ -28,3 +29,5 @@ func вход_в_лобби():
 	%"создать_лобби".disabled=true
 	%"зайти_в_лобби".disabled=true
 	
+func ввод_айпи(айпи):
+	NetMenager.айпи = айпи
