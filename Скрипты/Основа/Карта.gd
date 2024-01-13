@@ -276,17 +276,28 @@ func таймер_смерть():
 func смерть():
 	превью.visible = false
 	visible = false
-	match состояние: 
-		Состояние_карты.на_столе:
-			GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
-			GameManager.позицияТокенов()
-			умер.emit()
-		Состояние_карты.в_руке:
-			CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
-			CardManager.обновление_стола()
-	состояние = Состояние_карты.кладбище
-	reparent(get_tree().current_scene.find_child("Кладбище", true, false))
-	CardManager.карта_противник_умер.rpc(я)
+	if принадлежность:
+		match состояние: 
+			Состояние_карты.на_столе:
+				GameManager.Карты1.remove_at(GameManager.Карты1.find(self))
+				GameManager.позицияТокенов()
+				умер.emit()
+			Состояние_карты.в_руке:
+				CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
+				CardManager.обновление_стола()
+		состояние = Состояние_карты.кладбище
+		reparent(get_tree().current_scene.find_child("Кладбище", true, false))
+	else:
+		match состояние: 
+			Состояние_карты.на_столе:
+				GameManager.Карты2.remove_at(GameManager.Карты2.find(self))
+				GameManager.токеныПротивника()
+				умер.emit()
+			Состояние_карты.в_руке:
+				CardManager.КартыВРукеПротивника.remove_at(CardManager.КартыВРукеПротивника.find(self))
+				CardManager.рукаПротивника()
+		состояние = Состояние_карты.кладбище
+		reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
 	
 		
 func смерть_противник():
