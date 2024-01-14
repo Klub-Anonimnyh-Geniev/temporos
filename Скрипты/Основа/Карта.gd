@@ -237,13 +237,17 @@ func Мышь3D() -> Vector3:
 	
 
 func вкл_превью():
-	
+	print("aaa")
 	превьюКарты.ресет()
 	превьюКарты.создание_карты(id, Название, Описание_карты, Тип_карты, Редкость, ЭФФЕКТЫ, Стоимость, int($"Основа_карты/Прочность".get_text()), int($"Основа_карты/Атака".get_text()), int($"Основа_карты/ХП".get_text()), int($"Основа_карты/Время".get_text()), Арт)
 	preview = true
 	превью.position = get_tree().current_scene.find_child("КАМЕРА", true, false).unproject_position(position)
 	превью.visible = true
+	print(превью)
+	print(preview)
+	print(CardManager.preview)
 func выкл_превью():
+	превьюКарты.ресет()
 	preview = false
 	превью.visible = false
 	pass
@@ -298,8 +302,10 @@ func таймер_смерть():
 		смерть()
 	pass
 func смерть():
-	превью.visible = false
-	visible = false
+	$Area3D.mouse_exited.emit()
+	CardManager.preview = true
+	global_position = Vector3(0,0,0)
+	новая_позиция = Vector3(0,0,0)
 	if принадлежность:
 		match состояние: 
 			Состояние_карты.на_столе:
@@ -323,7 +329,7 @@ func смерть():
 		состояние = Состояние_карты.кладбище
 		reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
 	
-		
+	$Area3D.mouse_exited.emit()
 func смерть_противник():
 	превью.visible = false
 	visible = false	
@@ -337,7 +343,7 @@ func смерть_противник():
 			CardManager.рукаПротивника()
 	состояние = Состояние_карты.кладбище
 	reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
-
+	global_position = Vector3(0,0,0)
 func обновление_карты():
 	$"Основа_карты/Стоимость".text = str(Стоимость) 
 	if Описание_карты != null:
