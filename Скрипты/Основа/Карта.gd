@@ -156,7 +156,10 @@ func _process(_delta):
 			новый_поворот = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, false).rotation
 		Состояние_карты.на_столе:
 			pass
-			
+	match Тип_карты.Тип_карты:
+		Категории_карт.ТИП_КАРТЫ.СУЩЕСТВО:
+			if Тип_карты.Здоровье <= 0:
+				смерть()
 func _on_area_3d_mouse_entered():
 	match состояние:
 			Состояние_карты.в_руке:

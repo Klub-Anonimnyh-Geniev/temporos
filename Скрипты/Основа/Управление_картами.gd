@@ -162,3 +162,6 @@ func обновление_карт():
 	for карта in GameManager.Карты2:
 		карта.обновление_карты()
 	pass
+@rpc("any_peer","call_remote")
+func передать_атаку(дамагер, таргет):
+	get_tree().current_scene.find_child(дамагер, true, false).Тип_карты.атака(get_tree().current_scene.find_child(таргет, true, false))
