@@ -19,7 +19,16 @@ func розыгрыш_карты(карта):
 		CardManager.preview = true
 		карта.состояние = Карта.Состояние_карты.на_столе
 		set_meta("polojeniye", карта.состояние)
-		GameManager.Карты1.append(карта)
+		var index: int = 0
+		for токен in GameManager.Карты1:
+			
+			var камера = карта.get_tree().current_scene.find_child("КАМЕРА", true, false)
+			var мышь = карта.get_viewport().get_mouse_position()
+			if камера.unproject_position(токен.global_position).x <= мышь.x:
+				index +=1
+			pass
+		
+		GameManager.Карты1.insert(index, карта)
 		карта.reparent(карта.get_tree().current_scene.find_child("Карты1", true, false))
 		GameManager.позицияТокенов()
 		CardManager.обновление_стола()
