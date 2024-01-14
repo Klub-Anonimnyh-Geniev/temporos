@@ -13,7 +13,7 @@ var ИгроваяКолодаПротивника: Array
 var КриваяВРуке_X: Curve = load("res://Ресурсы/позиция_карт_в_руке_X.tres")
 var КриваяВРуке_Z: Curve = load("res://Ресурсы/позиция_карт_в_руке_Z.tres")
 var КриваяВРуке_поворот: Curve = load("res://Ресурсы/позиция_карт_в_руке_поворот.tres")
-
+var выбор_цели = false
 # Called when the node enters the scene tree for the first time.
 func запуск_матча():
 	СтартоваяКолода = load(Data.все_игроки[NetMenager.мой_логин]["деки"][0])
@@ -151,3 +151,14 @@ func противник_разыграл(я):
 @rpc("any_peer","call_remote")	
 func карта_противник_умер(я):
 	get_tree().current_scene.find_child(я, true, false).смерть_противник()
+
+func обновление_карт():
+	for карта in КартыВРуке:
+		карта.обновление_карты()
+	for карта in КартыВРукеПротивника:
+		карта.обновление_карты()
+	for карта in GameManager.Карты1:
+		карта.обновление_карты()
+	for карта in GameManager.Карты2:
+		карта.обновление_карты()
+	pass

@@ -57,6 +57,8 @@ var preview = false ## Отображается ли сейчас превью �
 @onready var раб_поз = position ## Переменная для изменения положения только видимой части карты, а не всей её сцены
 var Таймер_жизнь: Timer ## Индивидуальный таймер отсчёта жизни карты
 var есть_возраст: bool = false ## Имеется ли вообще возраст у этой карты
+@onready var маркер = $AAA
+
 
 func инициализация(ID: StringName = "", Доп_эффекты: Array = []): ## Метод, который заменяет урезанный в возможностях встроенный метод [method Object._init]
 	## устанавливаем id карты, а затем и все остальные переменные
@@ -150,7 +152,8 @@ func _process(_delta):
 	положение_карты()
 	match состояние:
 		Состояние_карты.разыгрывается:
-			Мышь3D()
+			новая_позиция = Мышь3D()
+			новый_поворот = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, false).rotation
 		Состояние_карты.на_столе:
 			pass
 			
@@ -181,14 +184,11 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 		match состояние:
 			Состояние_карты.в_руке:
 				if event is InputEventMouseButton:
-					if Input.is_action_just_pressed("ЛКМ") :
+					if Input.is_action_just_pressed("ЛКМ"):
 						поз_мышь = get_tree().current_scene.get_viewport().get_mouse_position()
 						меня_хотят_разыграть = true
-						get_viewport().set_input_as_handled()
-						
-					if Input.is_action_just_released("ЛКМ") and меня_хотят_разыграть:
+					if Input.is_action_just_released("ЛКМ"):
 						карту_в_мышку()
-						get_viewport().set_input_as_handled()
 						return
 				if меня_хотят_разыграть:
 					if event is InputEventMouseMotion:
@@ -200,15 +200,15 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 			Состояние_карты.разыгрывается:
 				if CardManager.желание_разыграть:
 					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-						
-						меня_разыграли.emit(self)
 						get_viewport().set_input_as_handled()
+						меня_разыграли.emit(self)
+						
 						return
 				else:
 					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-						
-						нерозыгрыш_карты()
 						get_viewport().set_input_as_handled()
+						нерозыгрыш_карты()
+						
 						return
 				if Input.is_action_just_pressed("ПКМ"):
 					нерозыгрыш_карты()
@@ -216,16 +216,17 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 					return
 	if состояние == Состояние_карты.на_столе and принадлежность:
 		if Input.is_action_just_pressed("ЛКМ") and Тип_карты.has_method("действие_токена"):
-			Тип_карты.действие_токена()
+			get_viewport().set_input_as_handled()
+			Тип_карты.действие_токена(self)
 			pass
 				
 @warning_ignore("confusable_identifier")
-func Мышь3D():
+func Мышь3D() -> Vector3:
 	
 	var камера: Camera3D = get_tree().current_scene.find_child("КАМЕРА", true, false)
 	var мышь = get_viewport().get_mouse_position()
-	новая_позиция = камера.project_position(мышь, 15)
-	новый_поворот = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, false).rotation
+	return камера.project_position(мышь, 15)
+	
 
 func вкл_превью():
 	
@@ -328,3 +329,23 @@ func смерть_противник():
 			CardManager.рукаПротивника()
 	состояние = Состояние_карты.кладбище
 	reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
+
+func обновление_карты():
+	$"Основа_карты/Стоимость".text = str(Стоимость) 
+	if Описание_карты != null:
+		$"Основа_карты/Описание".text = Описание_карты
+		DiscFontSize = Discfunc(Описание_карты.length())
+		$"Основа_карты/Описание".font_size = DiscFontSize
+		@warning_ignore("integer_division")
+		$"Основа_карты/Описание".outline_size = DiscFontSize/3
+	$"Основа_карты/Название".text = Название
+	NameFontSize = Namefunc(Название.length())
+	$"Основа_карты/Название".font_size = NameFontSize
+	@warning_ignore("integer_division")
+	$"Основа_карты/Название".outline_size = NameFontSize/3
+	match Тип_карты.Тип_карты:
+		Тип_карты.ТИП_КАРТЫ.СУЩЕСТВО:
+			$"Основа_карты/Атака".text = str(Тип_карты.Атака)
+			$"Основа_карты/ХП".text = str(Тип_карты.Здоровье)
+			есть_возраст = true
+			$"Основа_карты/Время".text = str(Возраст)
