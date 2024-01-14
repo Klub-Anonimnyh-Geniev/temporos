@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Стартовая_колода" load_steps=2 format=3 uid="uid://0lmahliobmfs"]
+
+[ext_resource type="Script" path="res://Ресурсы/СтартоваяКолода.gd" id="1_50j1f"]
+
+[resource]
+script = ExtResource("1_50j1f")
+"Колода" = Array[String](["старик", "старик", "старик", "старик", "старик", "старик", "ключ_событие", "зелье_бессм", "стар_призыв"])

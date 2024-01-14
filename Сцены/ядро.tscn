@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtpiv1obsmumi"]
+
+[ext_resource type="Script" path="res://Скрипты/Основа/main.gd" id="1_q4x8w"]
+[ext_resource type="Theme" uid="uid://jm67bxnimeit" path="res://Ресурсы/Текстуры и шрифты/тема.tres" id="2_886nm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l30y"]
+bg_color = Color(0.0941176, 0.101961, 0.129412, 1)
+
+[node name="ядро" type="Node"]
+script = ExtResource("1_q4x8w")
+"Элемент" = 26
+
+[node name="вход" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="вход"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7l30y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="вход"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -117.0
+offset_right = 207.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="логин" type="LineEdit" parent="вход/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+placeholder_text = "логин"
+alignment = 1
+max_length = 20
+expand_to_text_length = true
+metadata/_edit_use_anchors_ = true
+
+[node name="кнопка_вход" type="Button" parent="вход/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_886nm")
+theme_override_font_sizes/font_size = 40
+text = "вход
+"

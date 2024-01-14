@@ -3,6 +3,7 @@ extends Node
 enum Команды {взять_карту, выйти, изменить_ману}
 var режим_консоли = false
 @onready var Поле = $LineEdit
+
 func _input(event):
 	if event.is_action_pressed("Консоль") and !режим_консоли:
 		get_viewport().set_input_as_handled() 

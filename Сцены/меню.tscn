@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbi4rd5kpew7d"]
+
+[ext_resource type="Script" path="res://Скрипты/меню.gd" id="1_hj02j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rukk"]
+bg_color = Color(0.0941176, 0.101961, 0.129412, 1)
+
+[node name="Меню" type="Node"]
+script = ExtResource("1_hj02j")
+
+[node name="Интерфейс_меню" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Интерфейс_меню"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rukk")
+
+[node name="Control" type="Control" parent="Интерфейс_меню"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Интерфейс_меню/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Кнопки_меню" type="VBoxContainer" parent="Интерфейс_меню/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="IP" type="LineEdit" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 3.53
+text = "127.0.0.1"
+placeholder_text = "IP"
+expand_to_text_length = true
+
+[node name="создать_лобби" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+
+[node name="создать_лобби" type="Button" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню/создать_лобби"]
+unique_name_in_owner = true
+layout_mode = 2
+keep_pressed_outside = true
+text = "Создать лобби"
+
+[node name="зайти_в_лобби" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+
+[node name="зайти_в_лобби" type="Button" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню/зайти_в_лобби"]
+unique_name_in_owner = true
+layout_mode = 2
+keep_pressed_outside = true
+text = "Зайти в лобби"
+
+[node name="настройки" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+
+[node name="настройки" type="Button" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню/настройки"]
+unique_name_in_owner = true
+layout_mode = 2
+keep_pressed_outside = true
+text = "Настройки"
+
+[node name="выход" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
+layout_mode = 2
+
+[node name="выход" type="Button" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню/выход"]
+unique_name_in_owner = true
+layout_mode = 2
+keep_pressed_outside = true
+text = "Выход"
+
+[node name="начать" type="Button" parent="Интерфейс_меню/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 252.0
+offset_top = 96.0
+offset_right = 387.0
+offset_bottom = 184.0
+disabled = true
+text = "начать"
