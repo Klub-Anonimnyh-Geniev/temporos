@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://e7n61h0covg5"]
+[gd_scene load_steps=12 format=3 uid="uid://e7n61h0covg5"]
 
 [ext_resource type="Script" path="res://Скрипты/Основа/Карта.gd" id="1_wrkb7"]
 [ext_resource type="Shader" path="res://Карта3D.gdshader" id="2_mj3yv"]
+[ext_resource type="Texture2D" uid="uid://d4l8f6oq43kfr" path="res://Ресурсы/Текстуры и шрифты/Заклинание_тест.png" id="3_7isw8"]
 [ext_resource type="FontFile" uid="uid://cuf6encmyqm8c" path="res://Ресурсы/Текстуры и шрифты/centurygothic.ttf" id="3_e7um5"]
+[ext_resource type="Texture2D" uid="uid://duub2hau8q7jn" path="res://Ресурсы/Текстуры и шрифты/заглушка.png" id="4_2ifkv"]
 [ext_resource type="FontFile" uid="uid://d2ow7xpqrlpki" path="res://Ресурсы/Текстуры и шрифты/centurygothic_bold.ttf" id="4_p55tr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2gj"]
@@ -50,8 +52,17 @@ transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0
 gi_mode = 0
 mesh = SubResource("BoxMesh_piafs")
 
+[node name="осн_текстура" type="Sprite3D" parent="Основа_карты"]
+transform = Transform3D(0.48, 2.11758e-22, -1.77636e-15, 1.77636e-15, 2.09815e-08, 0.48, 3.17637e-22, -0.48, 2.09815e-08, 0, 0.002, 0)
+texture = ExtResource("3_7isw8")
+
+[node name="доп_текстура" type="Sprite3D" parent="Основа_карты"]
+transform = Transform3D(0.48, 0, 0, 0, -2.09815e-08, 0.48, 0, -0.48, -2.09815e-08, 0, 0.001, 0)
+texture = ExtResource("4_2ifkv")
+
 [node name="Название" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.169417)
+sorting_offset = 1.0
 pixel_size = 0.001
 text = "Монитровка"
 font = ExtResource("3_e7um5")
@@ -62,36 +73,42 @@ language = "ru_RU"
 
 [node name="ХП" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+sorting_offset = 1.0
 font = ExtResource("3_e7um5")
 font_size = 69
 language = "ru_RU"
 
 [node name="Прочность" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+sorting_offset = 1.0
 font = ExtResource("3_e7um5")
 font_size = 69
 language = "ru_RU"
 
 [node name="Время" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0.966249)
+sorting_offset = 1.0
 font = ExtResource("3_e7um5")
 font_size = 69
 language = "ru_RU"
 
 [node name="Атака" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.001, 0.966249)
+sorting_offset = 1.0
 font = ExtResource("3_e7um5")
 font_size = 69
 language = "ru_RU"
 
 [node name="Стоимость" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.0010004, -0.861358)
+sorting_offset = 1.0
 font = ExtResource("3_e7um5")
 font_size = 69
 language = "ru_RU"
 
 [node name="Описание" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.463249)
+sorting_offset = 1.0
 pixel_size = 0.001
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
