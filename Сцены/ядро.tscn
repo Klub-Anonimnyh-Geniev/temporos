@@ -8,6 +8,7 @@ bg_color = Color(0.0941176, 0.101961, 0.129412, 1)
 
 [node name="ядро" type="Node"]
 script = ExtResource("1_q4x8w")
+"Элемент" = 26
 
 [node name="вход" type="CanvasLayer" parent="."]
 

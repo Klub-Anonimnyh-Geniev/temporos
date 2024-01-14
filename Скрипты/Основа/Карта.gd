@@ -181,29 +181,44 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 		match состояние:
 			Состояние_карты.в_руке:
 				if event is InputEventMouseButton:
-					if Input.is_action_just_pressed("ЛКМ"):
+					if Input.is_action_just_pressed("ЛКМ") :
 						поз_мышь = get_tree().current_scene.get_viewport().get_mouse_position()
 						меня_хотят_разыграть = true
-					if Input.is_action_just_released("ЛКМ"):
+						get_viewport().set_input_as_handled()
+						
+					if Input.is_action_just_released("ЛКМ") and меня_хотят_разыграть:
 						карту_в_мышку()
+						get_viewport().set_input_as_handled()
+						return
 				if меня_хотят_разыграть:
 					if event is InputEventMouseMotion:
 						поз_мыши_2 = get_tree().current_scene.get_viewport().get_mouse_position()
 						мышь_расстояние = поз_мышь.distance_to(поз_мыши_2)
 						if мышь_расстояние > 500:
 							карту_в_мышку()
+						return
 			Состояние_карты.разыгрывается:
 				if CardManager.желание_разыграть:
 					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-							меня_разыграли.emit(self)
-							Input.action_release("ЛКМ")
+						
+						меня_разыграли.emit(self)
+						get_viewport().set_input_as_handled()
+						return
 				else:
-					if Input.is_action_just_pressed("ЛКМ"):
-							нерозыгрыш_карты()
-							Input.action_release("ЛКМ")
+					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
+						
+						нерозыгрыш_карты()
+						get_viewport().set_input_as_handled()
+						return
 				if Input.is_action_just_pressed("ПКМ"):
 					нерозыгрыш_карты()
-
+					get_viewport().set_input_as_handled()
+					return
+	if состояние == Состояние_карты.на_столе and принадлежность:
+		if Input.is_action_just_pressed("ЛКМ") and Тип_карты.has_method("действие_токена"):
+			Тип_карты.действие_токена()
+			pass
+				
 @warning_ignore("confusable_identifier")
 func Мышь3D():
 	
