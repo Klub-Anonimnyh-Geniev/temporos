@@ -61,7 +61,7 @@ movie_writer/disable_vsync=true
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/генератор_условий/plugin.cfg")
 
 [file_customization]
 

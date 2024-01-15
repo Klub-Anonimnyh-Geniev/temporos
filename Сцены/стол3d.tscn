@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://b3ck5vgrr2sx4"]
 
-[ext_resource type="Script" path="res://Скрипты/стол3d.gd" id="1_mdmum"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/стол3d.gd" id="1_mdmum"]
 [ext_resource type="Material" uid="uid://dosisvv0i4gbj" path="res://new_standard_material_3d.tres" id="1_rwmnr"]
 [ext_resource type="FontFile" uid="uid://cuf6encmyqm8c" path="res://Ресурсы/Текстуры и шрифты/centurygothic.ttf" id="3_m7wm4"]
-[ext_resource type="Script" path="res://Скрипты/Превьюшка.gd" id="4_1xgco"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/Превьюшка.gd" id="4_1xgco"]
 [ext_resource type="PackedScene" uid="uid://dp2afwupjdq74" path="res://Сцены/ПревьюКарты.tscn" id="4_j4o0g"]
 [ext_resource type="PackedScene" uid="uid://vpjbek0tqtr5" path="res://Сцены/test.tscn" id="9_jo47b"]
 

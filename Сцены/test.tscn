@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vpjbek0tqtr5"]
 
-[ext_resource type="Script" path="res://Скрипты/консоль.gd" id="3_yy2g2"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/консоль.gd" id="3_yy2g2"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(616, 324)

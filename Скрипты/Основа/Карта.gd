@@ -414,4 +414,4 @@ func смерть_противник():
 	reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
 	global_position = Vector3(0,0,0)
 
-	
+
