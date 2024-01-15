@@ -57,10 +57,9 @@ var Название: StringName = "":
 		if значение != null and значение != "":
 			Название = значение
 			$"Основа_карты/Название".text = Название
-			NameFontSize = Namefunc(Название.length())
-			$"Основа_карты/Название".font_size = NameFontSize
+			$"Основа_карты/Название".font_size = Namefunc(Название.length())
 			@warning_ignore("integer_division")
-			$"Основа_карты/Название".outline_size = NameFontSize/3
+			$"Основа_карты/Название".outline_size = Namefunc(Название.length())/3
 		else: 
 			Название = ""
 			$"Основа_карты/Название".text = ""
@@ -130,45 +129,36 @@ var Описание_карты: String :
 		if значение != null and значение != "":
 			Описание_карты = значение
 			$"Основа_карты/Описание".text = Описание_карты
-			DiscFontSize = Discfunc(Описание_карты.length())
-			$"Основа_карты/Описание".font_size = DiscFontSize
+			$"Основа_карты/Описание".font_size = Discfunc(Описание_карты.length())
 			@warning_ignore("integer_division")
-			$"Основа_карты/Описание".outline_size = DiscFontSize/3
+			$"Основа_карты/Описание".outline_size = Discfunc(Описание_карты.length())/3
 		else:
 			Описание_карты = значение
 			$"Основа_карты/Описание".text = ""
 const NameRatio = 2500 ## Постоянная соотношения размера текста карты к количеству символов
-var DiscFontSize: int ## Переменная размера шрифта для описания карты
-var NameFontSize: int ## Переменная размера шрифта для названия карты
 var новая_позиция : Vector3 ## Рабочая переменная положения карты для метода [method положение_карты]
 var новый_поворот : Vector3 ## Рабочая переменная поворота карты для метода [method положение_карты]
 var изменение_позиции: bool = false ## Изменяет ли сейчас позицию карта
-var Кривая_карты_в_руке: Curve ## Кривая для расчёта положения карты в руке
-var меня_хотят_разыграть = false ## Переменная состояния между [enum Состояние_карты] в руке и разыгрывания
+var меня_хотят_взять = false ## Переменная состояния между [enum Состояние_карты] в руке и разыгрывания
 @onready var превью = get_tree().current_scene.find_child("Превьюшка", true, false) ## Ссылка на визуализатор превью карты
 @onready var превьюКарты = get_tree().current_scene.find_child("Превьюха", true, false) ## Ссылка на ноду [ПревьюКарты] в сцене
 var preview = false ## Отображается ли сейчас превью для этой карты
 @onready var раб_поз = position ## Переменная для изменения положения только видимой части карты, а не всей её сцены
 @onready var Таймер_жизнь:Timer  = $"жизнь" ## Индивидуальный таймер отсчёта жизни карты
 var есть_возраст: bool = false ## Имеется ли вообще возраст у этой карты
-@onready var маркер = $AAA
+@onready var маркер = $AAA 
 @onready var Озвучка = $"Озвучка"
 var озвучка_спавн
 var озвучка_атака
 var озвучка_смерть
 func _ready():
 	Таймер_жизнь.timeout.connect(таймер_смерть)
-func инициализация(ID: StringName = "", Доп_эффекты: Array = []): ## Метод, который заменяет урезанный в возможностях встроенный метод [method Object._init]
-	## устанавливаем id карты, а затем и все остальные переменные
-	id = ID 
-	
-	
-	
+## Метод, который заменяет урезанный в возможностях встроенный метод [method Object._init]
+## Заменён имплементацией [param set] и [param get] у переменных
+## @deprecated 
+func инициализация(ID: StringName, Доп_эффекты: Array): 
+	id = ID
 	Доп_эффект.append_array(Доп_эффекты)
-	
-	
-	
-	
 	match Тип_карты.Тип_карты:
 		Тип_карты.ТИП_КАРТЫ.СУЩЕСТВО:
 			#Тип_карты.Атака = Data.дата_карт[ID]["атака"]
@@ -195,12 +185,12 @@ func положение_карты():
 		position = position.lerp(новая_позиция, .3)
 	if rotation != новый_поворот:
 		rotation_degrees = rotation_degrees.lerp(новый_поворот, .3)
-func Discfunc(количество_символов: int) -> int:
+static func Discfunc(количество_символов: int) -> int:
 	if количество_символов <= 170:
 		return 75
 	else:
 		return 65
-func Namefunc(количество_символов: int) -> int: 
+static func Namefunc(количество_символов: int) -> int: 
 	if количество_символов <= 15:
 		return 150
 	else:
@@ -214,15 +204,19 @@ func положить_карту_в_руку():
 	else:
 		сжигание_карты()
 func сжигание_карты():
-	#смерть()
-	print("aaa")
+	смерть()
 func карту_в_руку():
-	CardManager.КартыВРуке.append(self)
-	CardManager.позиции_в_руке()
-	состояние = Состояние_карты.в_руке
-	reparent(get_tree().current_scene.find_child("Рука1", true, false))
+	if принадлежность:
+		CardManager.КартыВРуке.append(self)
+		CardManager.позиции_в_руке()
+		состояние = Состояние_карты.в_руке
+		reparent(get_tree().current_scene.find_child("Рука1", true, false))
+	else:
+		CardManager.КартыВРукеПротивника.append(self)
+		CardManager.рукаПротивника()
+		состояние = Состояние_карты.в_руке
+		reparent(get_tree().current_scene.find_child("Рука2", true, false))
 	set_meta("polojeniye", состояние)
-	
 func карту_в_руку_противник():
 	CardManager.КартыВРукеПротивника.append(self)
 	CardManager.рукаПротивника()
@@ -264,48 +258,50 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 	var поз_мышь: Vector2
 	var поз_мыши_2: Vector2
 	var мышь_расстояние: float
-	var режим_мыши = false
-	if проверка_маны():
+	if принадлежность:	
 		match состояние:
 			Состояние_карты.в_руке:
-				if event is InputEventMouseButton:
-					if Input.is_action_just_pressed("ЛКМ"):
-						поз_мышь = get_tree().current_scene.get_viewport().get_mouse_position()
-						меня_хотят_разыграть = true
-					if Input.is_action_just_released("ЛКМ"):
-						карту_в_мышку()
-						return
-				if меня_хотят_разыграть:
-					if event is InputEventMouseMotion:
-						поз_мыши_2 = get_tree().current_scene.get_viewport().get_mouse_position()
-						мышь_расстояние = поз_мышь.distance_to(поз_мыши_2)
-						if мышь_расстояние > 500:
-							карту_в_мышку()
-						return
+				if проверка_маны():
+					if event is InputEventMouseButton:
+						if Input.is_action_just_pressed("ЛКМ"):
+							поз_мышь = get_tree().current_scene.get_viewport().get_mouse_position()
+							меня_хотят_взять = true
+							Input.action_release("ЛКМ")
+							return
+						if Input.is_action_just_released("ЛКМ"):
+							CardManager.карту_в_мышку.rpc(я)
+							меня_хотят_взять = false
+							return
+					if меня_хотят_взять:
+						if event is InputEventMouseMotion:
+							поз_мыши_2 = get_tree().current_scene.get_viewport().get_mouse_position()
+							мышь_расстояние = поз_мышь.distance_to(поз_мыши_2)
+							if мышь_расстояние > 500:
+								CardManager.карту_в_мышку.rpc(я)
+								меня_хотят_взять = false
 			Состояние_карты.разыгрывается:
-				if CardManager.желание_разыграть:
-					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
+				if проверка_маны():
+					if CardManager.желание_разыграть:
+						if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
+							get_viewport().set_input_as_handled()
+							меня_разыграли.emit(self)
+							return
+					else:
+						if (Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ")) and !меня_хотят_взять:
+							get_viewport().set_input_as_handled()
+							CardManager.нерозыгрыш_карты.rpc(я)
+							
+							return
+					if Input.is_action_just_pressed("ПКМ"):
+						CardManager.нерозыгрыш_карты.rpc(я)
 						get_viewport().set_input_as_handled()
-						
-						меня_разыграли.emit(self)
-						
 						return
-				else:
-					if Input.is_action_just_pressed("ЛКМ") or Input.is_action_just_released("ЛКМ"):
-						get_viewport().set_input_as_handled()
-						нерозыгрыш_карты()
-						
-						return
-				if Input.is_action_just_pressed("ПКМ"):
-					нерозыгрыш_карты()
+			Состояние_карты.на_столе:
+				if Input.is_action_just_pressed("ЛКМ") and Тип_карты.has_method("действие_токена"):
 					get_viewport().set_input_as_handled()
-					return
-	if состояние == Состояние_карты.на_столе and принадлежность:
-		if Input.is_action_just_pressed("ЛКМ") and Тип_карты.has_method("действие_токена"):
-			get_viewport().set_input_as_handled()
-			Тип_карты.действие_токена(self)
-			pass
-				
+					Тип_карты.действие_токена(self)
+					pass
+					
 @warning_ignore("confusable_identifier")
 func Мышь3D() -> Vector3:
 	
@@ -333,34 +329,32 @@ func выкл_превью():
 func нерозыгрыш_карты():
 	
 	
+	if принадлежность:
+		CardManager.preview = true
+		CardManager.обновление_стола()
+	else:
+		CardManager.рукаПротивника()
+	
 	состояние = Состояние_карты.в_руке
-	меня_хотят_разыграть = false
-	CardManager.preview = true
-	CardManager.обновление_стола()
-	CardManager.нерозыгрыш_противник.rpc(я)
-func нерозыгрыш_противник():
-	состояние = Состояние_карты.в_руке
-	меня_хотят_разыграть = false
-	CardManager.рукаПротивника()
+	get_viewport().set_input_as_handled()
+	меня_хотят_взять = false	
 func карту_в_мышку():
-	раб_поз = Vector3(0,0,0)
+	
 	состояние = Состояние_карты.разыгрывается
-	CardManager.preview = false
-	CardManager.разыгрывание_карты = true
-	CardManager.картуРазыграть = self
-	выкл_превью()
-	меня_хотят_разыграть = false
-	CardManager.карта_мышка_противник.rpc(я)
-
+	раб_поз = Vector3(0,0,0)
+	if принадлежность:
+		CardManager.preview = false
+		CardManager.разыгрывание_карты = true
+		CardManager.картуРазыграть = self
+		выкл_превью()
+	else:
+		новая_позиция = get_tree().current_scene.find_child("розыгрыш", true, false).position
+		новый_поворот = Vector3(0,0,180)
 func розыгрыш_противник():
 	меня_разыграл_противник.emit(self)
 	новый_поворот = Vector3(0, 0, 0)
 func карту_в_мышку_противника():
-	меня_хотят_разыграть = true
-	раб_поз = Vector3(0,0,0)
-	состояние = Состояние_карты.разыгрывается_противником
-	новая_позиция = get_tree().current_scene.find_child("розыгрыш", true, false).position
-	новый_поворот = Vector3(0,0,180)
+	
 	pass
 
 func проверка_маны(): 
@@ -424,23 +418,5 @@ func смерть_противник():
 	состояние = Состояние_карты.кладбище
 	reparent(get_tree().current_scene.find_child("КладбищеПротивник", true, false))
 	global_position = Vector3(0,0,0)
-func обновление_карты():
-	$"Основа_карты/Стоимость".text = str(Стоимость) 
-	if Описание_карты != null:
-		$"Основа_карты/Описание".text = Описание_карты
-		DiscFontSize = Discfunc(Описание_карты.length())
-		$"Основа_карты/Описание".font_size = DiscFontSize
-		@warning_ignore("integer_division")
-		$"Основа_карты/Описание".outline_size = DiscFontSize/3
-	$"Основа_карты/Название".text = Название
-	NameFontSize = Namefunc(Название.length())
-	$"Основа_карты/Название".font_size = NameFontSize
-	@warning_ignore("integer_division")
-	$"Основа_карты/Название".outline_size = NameFontSize/3
-	match Тип_карты.Тип_карты:
-		Тип_карты.ТИП_КАРТЫ.СУЩЕСТВО:
-			$"Основа_карты/Атака".text = str(Тип_карты.Атака)
-			$"Основа_карты/ХП".text = str(Тип_карты.Здоровье)
-			есть_возраст = true
-			$"Основа_карты/Время".text = str(Возраст)
+
 	

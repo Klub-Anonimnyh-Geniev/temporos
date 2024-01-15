@@ -16,7 +16,7 @@ material = ExtResource("1_rwmnr")
 material = ExtResource("1_rwmnr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yfo6"]
-size = Vector2(611.5, 161.5)
+size = Vector2(739, 280)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wy0d8"]
 font = ExtResource("3_m7wm4")
@@ -185,6 +185,7 @@ size_flags_vertical = 4
 position = Vector2(0, -76)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Container/ЗонаРуки"]
+position = Vector2(27.5, -7)
 shape = SubResource("RectangleShape2D_2yfo6")
 debug_color = Color(0, 0.686275, 0.8, 0.419608)
 
