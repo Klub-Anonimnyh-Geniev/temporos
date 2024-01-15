@@ -182,6 +182,7 @@ grow_vertical = 0
 size_flags_vertical = 4
 
 [node name="ЗонаРуки" type="Area2D" parent="CanvasLayer/Container"]
+show_behind_parent = true
 position = Vector2(0, -76)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Container/ЗонаРуки"]

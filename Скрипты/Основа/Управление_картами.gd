@@ -100,10 +100,6 @@ func розыгрыш_карты():
 func вернуть_карту():
 		желание_разыграть = false
 
-func обновление_стола():
-	желание_разыграть = false
-	разыгрывание_карты = false
-	позиции_в_руке()
 func рукаПротивника():
 	var ПозРуки = get_tree().current_scene.find_child("Рука2", true, false).find_child("позРуки", true, true).position
 	var ПовРуки = get_tree().current_scene.find_child("Рука2", true, false).find_child("позРуки", true, true).rotation
