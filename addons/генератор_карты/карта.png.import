@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxe768aqj8w4b"
-path="res://.godot/imported/icon.svg-1a65a9ddd85f1c1dcb9041c17bd6d7f3.ctex"
+uid="uid://67pf3edtyrfj"
+path="res://.godot/imported/карта.png-0e5a0228633d55f0ca70d3a1610437ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/генератор_условий/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-1a65a9ddd85f1c1dcb9041c17bd6d7f3.ctex"]
+source_file="res://addons/генератор_карты/карта.png"
+dest_files=["res://.godot/imported/карта.png-0e5a0228633d55f0ca70d3a1610437ec.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
