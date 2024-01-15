@@ -59,7 +59,7 @@ func зайти_в_лобби():
 	peer = ENetMultiplayerPeer.new()
 	var клиент = peer.create_client(айпи, порт)
 	if клиент != OK:
-		print(клиент)
+		printerr(клиент)
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)

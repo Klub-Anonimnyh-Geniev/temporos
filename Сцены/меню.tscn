@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbi4rd5kpew7d"]
+[gd_scene load_steps=4 format=3 uid="uid://dbi4rd5kpew7d"]
 
 [ext_resource type="Script" path="res://Скрипты/меню.gd" id="1_hj02j"]
+[ext_resource type="Script" path="res://Скрипты/кнопка_интерфейс.gd" id="2_rsrfq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rukk"]
 bg_color = Color(0.0941176, 0.101961, 0.129412, 1)
@@ -57,6 +58,7 @@ unique_name_in_owner = true
 layout_mode = 2
 keep_pressed_outside = true
 text = "Создать лобби"
+script = ExtResource("2_rsrfq")
 
 [node name="зайти_в_лобби" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
 layout_mode = 2
@@ -66,6 +68,7 @@ unique_name_in_owner = true
 layout_mode = 2
 keep_pressed_outside = true
 text = "Зайти в лобби"
+script = ExtResource("2_rsrfq")
 
 [node name="настройки" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
 layout_mode = 2
@@ -75,6 +78,7 @@ unique_name_in_owner = true
 layout_mode = 2
 keep_pressed_outside = true
 text = "Настройки"
+script = ExtResource("2_rsrfq")
 
 [node name="выход" type="HBoxContainer" parent="Интерфейс_меню/Control/MarginContainer/Кнопки_меню"]
 layout_mode = 2
@@ -84,6 +88,7 @@ unique_name_in_owner = true
 layout_mode = 2
 keep_pressed_outside = true
 text = "Выход"
+script = ExtResource("2_rsrfq")
 
 [node name="начать" type="Button" parent="Интерфейс_меню/Control"]
 unique_name_in_owner = true
@@ -92,5 +97,7 @@ offset_left = 252.0
 offset_top = 96.0
 offset_right = 387.0
 offset_bottom = 184.0
+mouse_filter = 2
 disabled = true
 text = "начать"
+script = ExtResource("2_rsrfq")

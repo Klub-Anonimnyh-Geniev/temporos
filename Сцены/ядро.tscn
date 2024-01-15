@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtpiv1obsmumi"]
+[gd_scene load_steps=5 format=3 uid="uid://dtpiv1obsmumi"]
 
 [ext_resource type="Script" path="res://Скрипты/Основа/main.gd" id="1_q4x8w"]
 [ext_resource type="Theme" uid="uid://jm67bxnimeit" path="res://Ресурсы/Текстуры и шрифты/тема.tres" id="2_886nm"]
+[ext_resource type="Script" path="res://Скрипты/кнопка_интерфейс.gd" id="3_2d65t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l30y"]
 bg_color = Color(0.0941176, 0.101961, 0.129412, 1)
@@ -49,3 +50,7 @@ theme = ExtResource("2_886nm")
 theme_override_font_sizes/font_size = 40
 text = "вход
 "
+script = ExtResource("3_2d65t")
+
+[node name="Интерфейс Аудио" type="AudioStreamPlayer" parent="."]
+bus = &"UI"

@@ -2,19 +2,12 @@ extends Node
 @export_flags("Анемо", "Гео","Электро","Дендро","Гидро") var Элемент = 0
 var меню = preload("res://Сцены/меню.tscn")
 var игра = preload("res://Сцены/проверка.tscn")
+@onready var интерфейс_аудио = $"Интерфейс Аудио"
 @onready var поле_логин: LineEdit = $"вход/VBoxContainer/логин"
 @onready var кнопка_входа: Button = $"вход/VBoxContainer/кнопка_вход"
 func _ready():
 	поле_логин.text_submitted.connect(вход.bind())
 	кнопка_входа.pressed.connect(нажатие_кнопки_входа)
-	var A = test.new()
-	A.name = "Test"
-	var B = test.new()
-	A.printA()
-	B.a = 13
-	B.a = B.a<<1
-	B.printA()
-	print(bin_string(Элемент))
 	pass
 
 func _input(event):
@@ -40,18 +33,14 @@ func нажатие_кнопки_входа():
 func выход():
 	get_tree().quit()
 
-class test extends Node:
-	@export var a = 1
-	
-	func printA():
-		print(a)
-	func _input(event):
-		if event.is_action_pressed("ЛКМ"):
-			print("AHAHA")
+
+
+func проигрывание_звука_интерфейса(тип: String = "наводка"):
+	match тип:
+		"наводка":
+			интерфейс_аудио.set_stream(load("res://Ресурсы/Аудио/Тест/Abstract2.ogg"))
+		"нажатие":
+			интерфейс_аудио.set_stream(load("res://Ресурсы/Аудио/Тест/Abstract1.ogg"))
+	интерфейс_аудио.play()
+			
 	pass
-func bin_string(n):
-	var ret_str = ""
-	while n > 0:
-		ret_str = str(n&1) + ret_str
-		n = n>>1
-	return ret_str

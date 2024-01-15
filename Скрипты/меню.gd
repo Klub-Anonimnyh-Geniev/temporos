@@ -9,6 +9,7 @@ func _ready():
 	%"зайти_в_лобби".pressed.connect(вход_в_лобби)
 	%"начать".pressed.connect(func(): NetMenager.начать_игру.rpc())
 	$"Интерфейс_меню/Control/MarginContainer/Кнопки_меню/IP".text_changed.connect(ввод_айпи.bind())
+
 	pass # Replace with function body.
 
 
@@ -21,13 +22,18 @@ func создать_лобби():
 	#
 	NetMenager.создание_лобби()
 	%"начать".disabled = false
+	%"начать".mouse_filter = Control.MOUSE_FILTER_STOP
 	%"создать_лобби".disabled=true
 	%"зайти_в_лобби".disabled=true
 func вход_в_лобби():
-	NetMenager.зайти_в_лобби()
+	var заход = NetMenager.зайти_в_лобби()
+	if заход != OK:
+		return
 	%"начать".disabled = false
+	%"начать".mouse_filter = Control.MOUSE_FILTER_STOP
 	%"создать_лобби".disabled=true
 	%"зайти_в_лобби".disabled=true
 	
 func ввод_айпи(айпи):
 	NetMenager.айпи = айпи
+
