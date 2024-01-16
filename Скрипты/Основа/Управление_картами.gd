@@ -63,13 +63,13 @@ func взять_карту_противник(положение):
 	var картонка: Карта = ИгроваяКолодаПротивника[положение]
 	ИгроваяКолодаПротивника.remove_at(положение)
 	картонка.карту_в_руку_противник()
-@rpc("any_peer","call_remote")
-func карта_мышка_противник(сиблинг):
-	КартыВРукеПротивника[КартыВРукеПротивника.find(get_tree().current_scene.find_child(сиблинг, true, false))].карту_в_мышку_противника()
-	pass
-@rpc("any_peer","call_remote")
-func нерозыгрыш_противник(картонка):
-	get_tree().current_scene.find_child(картонка, true, false).нерозыгрыш_противник()
+@rpc("any_peer","call_local")
+func карту_в_мышку(картонка):
+	get_tree().current_scene.find_child(картонка, true, false).карту_в_мышку()
+	
+@rpc("any_peer","call_local")
+func нерозыгрыш_карты(картонка):
+	get_tree().current_scene.find_child(картонка, true, false).нерозыгрыш_карты()
 func очистить_стол():
 	for картонка in КартыВРуке:
 		картонка.выкл_превью()
@@ -84,7 +84,7 @@ func позиции_в_руке():
 	var ПовРуки = get_tree().current_scene.find_child("Рука1", true, false).find_child("позРуки", true, true).rotation
 	for карта in КартыВРуке:
 		
-		if not карта.меня_хотят_разыграть:
+		if not карта.меня_хотят_взять:
 			карта.раб_поз = Vector3(0,0,0)
 			var коэфРуки = 0.5
 			if КартыВРуке.size() > 1:
@@ -100,15 +100,11 @@ func розыгрыш_карты():
 func вернуть_карту():
 		желание_разыграть = false
 
-func обновление_стола():
-	желание_разыграть = false
-	разыгрывание_карты = false
-	позиции_в_руке()
 func рукаПротивника():
 	var ПозРуки = get_tree().current_scene.find_child("Рука2", true, false).find_child("позРуки", true, true).position
 	var ПовРуки = get_tree().current_scene.find_child("Рука2", true, false).find_child("позРуки", true, true).rotation
 	for карта in КартыВРукеПротивника:
-		if not карта.меня_хотят_разыграть:
+		if not карта.меня_хотят_взять:
 			карта.раб_поз = Vector3(0,0,0)
 			var коэфРуки = 0.5
 			if КартыВРукеПротивника.size() > 1:

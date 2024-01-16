@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjphlk23koifl"]
 
-[ext_resource type="Script" path="res://Скрипты/стрелкапуть.gd" id="1_ffj1v"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/стрелкапуть.gd" id="1_ffj1v"]
 
 [sub_resource type="Curve3D" id="Curve3D_2oitl"]
 _data = {

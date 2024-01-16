@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Скрипты/Основа/main.gd" id="1_q4x8w"]
 [ext_resource type="Theme" uid="uid://jm67bxnimeit" path="res://Ресурсы/Текстуры и шрифты/тема.tres" id="2_886nm"]
-[ext_resource type="Script" path="res://Скрипты/кнопка_интерфейс.gd" id="3_2d65t"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/кнопка_интерфейс.gd" id="3_2d65t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l30y"]
 bg_color = Color(0.0941176, 0.101961, 0.129412, 1)

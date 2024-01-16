@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxtakisiee675"]
 
-[ext_resource type="Script" path="res://Скрипты/проверка.gd" id="1_5ib6k"]
+[ext_resource type="Script" path="res://Скрипты/Рабочие/проверка.gd" id="1_138n4"]
 
 [sub_resource type="Animation" id="Animation_iyyca"]
 resource_name = "a"
@@ -25,7 +25,7 @@ _data = {
 }
 
 [node name="Матч" type="Node"]
-script = ExtResource("1_5ib6k")
+script = ExtResource("1_138n4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

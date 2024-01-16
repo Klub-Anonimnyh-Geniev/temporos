@@ -1,0 +1,393 @@
+[gd_scene load_steps=2 format=3 uid="uid://bronf0ep83pmg"]
+
+[ext_resource type="Script" path="res://addons/редактор_карт/настройки_карты.gd" id="1_7dnbq"]
+
+[node name="Настройка карты" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+script = ExtResource("1_7dnbq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ID" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/ID"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ID_надпись" type="Label" parent="VBoxContainer/ID/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -10.5
+offset_right = 286.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "ID"
+horizontal_alignment = 1
+
+[node name="ID_редактор" type="LineEdit" parent="VBoxContainer/ID"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "старик"
+
+[node name="Название" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Название"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Название_надпись" type="Label" parent="VBoxContainer/Название/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -10.5
+offset_right = 286.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Название"
+horizontal_alignment = 1
+
+[node name="Название_редактор" type="LineEdit" parent="VBoxContainer/Название"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Старик"
+
+[node name="Описание" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Описание"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Описание_кнопка" type="CheckBox" parent="VBoxContainer/Описание/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -14.5
+offset_right = 56.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Описание"
+
+[node name="Описание_редактор" type="TextEdit" parent="VBoxContainer/Описание"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "\"Провокация\"."
+
+[node name="Арт" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Арт"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Арт/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Арт"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/Арт"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Арт_отображение" type="LineEdit" parent="VBoxContainer/Арт/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "res://Ресурсы/Текстуры и шрифты/Старик_тест.png"
+editable = false
+
+[node name="Арт_выбор" type="Button" parent="VBoxContainer/Арт"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Выбрать файл"
+
+[node name="Тип" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Тип"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Тип/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Тип"
+horizontal_alignment = 1
+
+[node name="MenuButton2" type="MenuButton" parent="VBoxContainer/Тип"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+item_count = 3
+popup/item_0/text = "AAAA"
+popup/item_0/id = 0
+popup/item_1/text = "qqqwweqe"
+popup/item_1/id = 1
+popup/item_2/text = "rerere"
+popup/item_2/id = 2
+
+[node name="Атака" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Атака"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Атака_кнопка" type="CheckBox" parent="VBoxContainer/Атака/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Атака"
+
+[node name="Атака_редактор" type="LineEdit" parent="VBoxContainer/Атака"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="Здоровье" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Здоровье"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Здоровье_кнопка" type="CheckBox" parent="VBoxContainer/Здоровье/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+button_pressed = true
+text = "Здоровье"
+
+[node name="Здоровье_редактор" type="LineEdit" parent="VBoxContainer/Здоровье"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+
+[node name="Прочность" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Прочность"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Прочность_кнопка" type="CheckBox" parent="VBoxContainer/Прочность/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Прочность"
+
+[node name="Прочность_редактор" type="LineEdit" parent="VBoxContainer/Прочность"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-1"
+
+[node name="Время" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Время"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Время_кнопка" type="CheckBox" parent="VBoxContainer/Время/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Время"
+
+[node name="Время_редактор" type="LineEdit" parent="VBoxContainer/Время"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+
+[node name="Стоимость" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Стоимость"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Стоимость_кнопка" type="CheckBox" parent="VBoxContainer/Стоимость/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -10.5
+offset_right = 8.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "Стоимость"
+
+[node name="Стоимость_редактор" type="LineEdit" parent="VBoxContainer/Стоимость"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="Заглушка" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Заглушка"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -10.5
+offset_right = 64.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Выберите карту"
+
+[node name="ВыборФайла" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 4
+size = Vector2i(500, 300)
+ok_button_text = "Открыть"
+file_mode = 0
+filters = PackedStringArray("*.png ; Изображение", "*.jpg ; Изображение")
+
+[connection signal="text_changed" from="VBoxContainer/ID/ID_редактор" to="." method="_on_id_редактор_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Название/Название_редактор" to="." method="_on_название_редактор_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Описание/Panel/Описание_кнопка" to="." method="_on_описание_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Описание/Описание_редактор" to="." method="_on_описание_редактор_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Арт/Арт_выбор" to="." method="_on_арт_выбор_pressed"]
+[connection signal="toggled" from="VBoxContainer/Атака/Panel/Атака_кнопка" to="." method="_on_атака_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Атака/Атака_редактор" to="." method="_on_атака_редактор_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Здоровье/Panel/Здоровье_кнопка" to="." method="_on_здоровье_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Здоровье/Здоровье_редактор" to="." method="_on_здоровье_редактор_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Прочность/Panel/Прочность_кнопка" to="." method="_on_прочность_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Прочность/Прочность_редактор" to="." method="_on_прочность_редактор_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Время/Panel/Время_кнопка" to="." method="_on_время_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Время/Время_редактор" to="." method="_on_время_редактор_text_changed"]
+[connection signal="toggled" from="VBoxContainer/Стоимость/Panel/Стоимость_кнопка" to="." method="_on_стоимость_кнопка_toggled"]
+[connection signal="text_changed" from="VBoxContainer/Стоимость/Стоимость_редактор" to="." method="_on_стоимость_редактор_text_changed"]
