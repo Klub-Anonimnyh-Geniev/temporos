@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpjunc8u8bu7d"]
+
+[ext_resource type="Script" path="res://addons/редактор_карт/ПревьюКарты.gd" id="1_lu510"]
+[ext_resource type="Shader" path="res://Карта3D.gdshader" id="2_2mux7"]
+[ext_resource type="Texture2D" uid="uid://d4l8f6oq43kfr" path="res://Ресурсы/Текстуры и шрифты/Заклинание_тест.png" id="3_p1prm"]
+[ext_resource type="Texture2D" uid="uid://duub2hau8q7jn" path="res://Ресурсы/Текстуры и шрифты/заглушка.png" id="4_jab70"]
+[ext_resource type="FontFile" uid="uid://cuf6encmyqm8c" path="res://Ресурсы/Текстуры и шрифты/centurygothic.ttf" id="5_imfwv"]
+[ext_resource type="FontFile" uid="uid://d2ow7xpqrlpki" path="res://Ресурсы/Текстуры и шрифты/centurygothic_bold.ttf" id="6_ouemc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2gj"]
+render_priority = 0
+shader = ExtResource("2_2mux7")
+
+[sub_resource type="BoxMesh" id="BoxMesh_piafs"]
+material = SubResource("ShaderMaterial_fe2gj")
+size = Vector3(1.68, 0.001, 2.39)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xftq7"]
+size = Vector3(1.93138, 0.0230064, 2.58766)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 8.06566, 4.35998, 1.97747)
+script = ExtResource("1_lu510")
+
+[node name="Основа_карты" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35187e-23, 0, -8.35187e-23, 1, 0, 0, 0)
+gi_mode = 0
+mesh = SubResource("BoxMesh_piafs")
+
+[node name="осн_текстура" type="Sprite3D" parent="Основа_карты"]
+transform = Transform3D(0.48, 2.11758e-22, -1.77636e-15, 1.77636e-15, 2.09815e-08, 0.48, 4.23516e-22, -0.48, 2.09815e-08, 0, 0.002, 0)
+texture = ExtResource("3_p1prm")
+
+[node name="доп_текстура" type="Sprite3D" parent="Основа_карты"]
+transform = Transform3D(0.48, 5.08149e-23, 0, 0, -2.09815e-08, 0.48, 3.17637e-22, -0.48, -2.09815e-08, 0, 0.0010004, 0)
+texture = ExtResource("4_jab70")
+
+[node name="Название" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 4.23656e-23, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.001, 0.169417)
+sorting_offset = 1.0
+pixel_size = 0.001
+text = "Монитровка"
+font = ExtResource("5_imfwv")
+font_size = 150
+outline_size = 30
+vertical_alignment = 2
+language = "ru_RU"
+
+[node name="ХП" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+sorting_offset = 1.0
+font = ExtResource("5_imfwv")
+font_size = 69
+language = "ru_RU"
+
+[node name="Время" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0.966249)
+sorting_offset = 1.0
+font = ExtResource("5_imfwv")
+font_size = 69
+language = "ru_RU"
+
+[node name="Атака" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.001, 0.966249)
+sorting_offset = 1.0
+font = ExtResource("5_imfwv")
+font_size = 69
+language = "ru_RU"
+
+[node name="Стоимость" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.616771, 0.0010004, -0.861358)
+sorting_offset = 1.0
+font = ExtResource("5_imfwv")
+font_size = 69
+language = "ru_RU"
+
+[node name="Описание" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0, 0.0010004, 0.463249)
+sorting_offset = 1.0
+pixel_size = 0.001
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font = ExtResource("6_ouemc")
+font_size = 65
+outline_size = 28
+autowrap_mode = 2
+width = 1500.0
+language = "ru_RU"
+metadata/_edit_use_anchors_ = true
+
+[node name="Area3D" type="Area3D" parent="Основа_карты"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Основа_карты/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.35186e-23, 0, -8.35186e-23, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_xftq7")
+
+[node name="жизнь" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="input_event" from="Основа_карты/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Основа_карты/Area3D" to="." method="_on_area_3d_mouse_exited"]

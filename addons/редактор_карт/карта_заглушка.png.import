@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxe768aqj8w4b"
-path="res://.godot/imported/icon.svg-64f9f11463210b2f7b0c2c341fb7090b.ctex"
+uid="uid://v4t23clo6qgu"
+path="res://.godot/imported/карта_заглушка.png-ad73bd07b3752c6f238f4df99ba4e619.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/генератор_карты/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-64f9f11463210b2f7b0c2c341fb7090b.ctex"]
+source_file="res://addons/редактор_карт/карта_заглушка.png"
+dest_files=["res://.godot/imported/карта_заглушка.png-ad73bd07b3752c6f238f4df99ba4e619.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

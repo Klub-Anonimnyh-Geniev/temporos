@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://67pf3edtyrfj"
-path="res://.godot/imported/карта.png-0e5a0228633d55f0ca70d3a1610437ec.ctex"
+path="res://.godot/imported/карта.png-c66e93b234b1233f6f5327787dd0a0de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/генератор_карты/карта.png"
-dest_files=["res://.godot/imported/карта.png-0e5a0228633d55f0ca70d3a1610437ec.ctex"]
+source_file="res://addons/редактор_карт/карта.png"
+dest_files=["res://.godot/imported/карта.png-c66e93b234b1233f6f5327787dd0a0de.ctex"]
 
 [params]
 
