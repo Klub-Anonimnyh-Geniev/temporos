@@ -23,12 +23,6 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 30
-text = "Сохранить карту"
-
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -54,5 +48,3 @@ own_world_3d = true
 transparent_bg = true
 
 [node name="Camera3D" type="Camera3D" parent="VBoxContainer/CenterContainer/SubViewport"]
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_сохранить_карту_pressed"]

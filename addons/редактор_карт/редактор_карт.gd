@@ -1,8 +1,7 @@
 @tool
 extends EditorPlugin
 var панель
-var test
-var условие
+var настройка
 var путь_экспорта
 var путь_импорта
 #region Обложка
@@ -28,7 +27,8 @@ func _exit_tree():
 	if панель:
 		панель.queue_free()
 		
-	test.queue_free()
+	if настройка:
+		настройка.queue_free()
 	# Clean-up of the plugin goes heвre.
 	pass
 
@@ -41,11 +41,11 @@ func _make_visible(visible):
 	if панель:
 		панель.visible = visible
 		if visible:
-			test = preload("res://addons/редактор_карт/настройка карты.tscn").instantiate()
-			add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, test)
+			настройка = preload("res://addons/редактор_карт/настройка карты.tscn").instantiate()
+			add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UL, настройка)
 		else:
-			if test:
-				test.queue_free()
+			if настройка:
+				настройка.queue_free()
 		
 
 

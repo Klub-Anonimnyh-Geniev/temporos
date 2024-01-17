@@ -5,7 +5,7 @@ signal обновление_от_редактора(id, инфа)
 var карта = false
 var словарь = {}
 var ID
-
+var index
 func _exit_tree():
 	карта = false
 
