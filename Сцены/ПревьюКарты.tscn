@@ -96,6 +96,13 @@ font = ExtResource("4_hpd1h")
 font_size = 69
 language = "ru_RU"
 
+[node name="Прочность" type="Label3D" parent="Основа_карты"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.999999, 0, -1, -4.37113e-08, 0.598081, 0.001, 0.966249)
+sorting_offset = 1.0
+font = ExtResource("4_hpd1h")
+font_size = 69
+language = "ru_RU"
+
 [node name="Время" type="Label3D" parent="Основа_карты"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.001, 0.966249)
 sorting_offset = 1.0

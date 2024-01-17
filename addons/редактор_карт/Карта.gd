@@ -65,7 +65,7 @@ func загрузить_карту(id, данные, индекс):
 	номер = индекс
 	словарь = данные
 	превьюшка = превью.instantiate()
-	%SubViewport.add_child(превьюшка)
+	$VBoxContainer/CenterContainer/SubViewport.add_child(превьюшка)
 	превьюшка.position = Vector3(0,0,-1.8)
 	превьюшка.rotation = Vector3(deg_to_rad(90), 0, 0)
 	превьюшка.создание_карты(ID, название, описание, тип, редкость, эффекты, стоимость, прочность, атака, здоровье, время, арт)

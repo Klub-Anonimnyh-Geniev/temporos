@@ -60,6 +60,10 @@ movie_writer/mjpeg_quality=1.0
 movie_writer/movie_file="A:/Антитемпус/Темпорус/Тест_рука.avi"
 movie_writer/disable_vsync=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/редактор_карт/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
