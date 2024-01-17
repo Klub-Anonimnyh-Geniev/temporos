@@ -187,7 +187,7 @@ func _on_описание_кнопка_toggled(toggled_on):
 func _on_атака_кнопка_toggled(toggled_on):
 	Атака_текст.editable = toggled_on
 	if !toggled_on:
-		карта["атака"] = "null"
+		карта["атака"] = null
 	else: карта["атака"] = int(Атака_текст.text)
 	обновить_базу()
 	pass # Replace with function body.
@@ -196,7 +196,7 @@ func _on_атака_кнопка_toggled(toggled_on):
 func _on_здоровье_кнопка_toggled(toggled_on):
 	Здоровье_текст.editable = toggled_on
 	if !toggled_on:
-		карта["здоровье"] = "null"
+		карта["здоровье"] = null
 	else: карта["здоровье"] = int(Здоровье_текст.text)
 	обновить_базу()
 	pass # Replace with function body.
@@ -205,7 +205,7 @@ func _on_здоровье_кнопка_toggled(toggled_on):
 func _on_прочность_кнопка_toggled(toggled_on):
 	Прочность_текст.editable = toggled_on
 	if !toggled_on:
-		карта["прочность"] = "null"
+		карта["прочность"] = null
 	else: карта["прочность"] = int(Прочность_текст.text)
 	обновить_базу()
 	pass # Replace with function body.
@@ -219,7 +219,7 @@ func загрузка_пикчи(путь):
 func _on_время_кнопка_toggled(toggled_on):
 	Время_текст.editable = toggled_on
 	if !toggled_on:
-		карта["время жизни"] = "null"
+		карта["время жизни"] = null
 	else: карта["время жизни"] = int(Время_текст.text)
 	обновить_базу()
 	pass # Replace with function body.
@@ -228,7 +228,7 @@ func _on_время_кнопка_toggled(toggled_on):
 func _on_стоимость_кнопка_toggled(toggled_on):
 	Стоимость_редактор.editable = toggled_on
 	if !toggled_on:
-		карта["стоимость"] = "null"
+		карта["стоимость"] = null
 	else: карта["стоимость"] = int(Стоимость_редактор.text)
 	обновить_базу()
 	pass # Replace with function body.
