@@ -94,11 +94,85 @@ same_column_width = true
 icon_mode = 0
 fixed_icon_size = Vector2i(50, 50)
 
-[node name="Button" type="Button" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
+[node name="Новая_карта" type="Button" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Новая карта"
+
+[node name="Сохранить_карту" type="Button" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Сохранить карту
+"
+
+[node name="Удалить_карту" type="Button" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "Удалить карту
+"
+
+[node name="ошибка" type="AcceptDialog" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
+title = "Ошибка"
+initial_position = 2
+unresizable = true
+
+[node name="удаление" type="ConfirmationDialog" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer"]
+title = "Подтвердите удаление"
+initial_position = 2
+size = Vector2i(351, 100)
+unresizable = true
+ok_button_text = "ОК"
+dialog_text = "Вы уверены, что хотите удалить эту карту?"
+cancel_button_text = "Отмена"
+
+[node name="Ввод_нового_id" type="ConfirmationDialog" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных"]
+title = "Выберите ID"
+initial_position = 1
+size = Vector2i(426, 160)
+unresizable = true
+ok_button_text = "Создать"
+dialog_text = "Необходимо выбрать уникальный идентификатор."
+dialog_hide_on_ok = false
+cancel_button_text = "Отмена"
+
+[node name="Control" type="Control" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/Ввод_нового_id"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/Ввод_нового_id/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -13.15
+offset_right = 75.0
+offset_bottom = 26.85
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "ID"
+alignment = 1
+clear_button_enabled = true
+
+[node name="ошибка_id" type="AcceptDialog" parent="VBoxContainer/Редактор/HSplitContainer/БазаДанных/Ввод_нового_id"]
+title = "Ошибка"
+initial_position = 2
+unresizable = true
 
 [node name="Карта" type="PanelContainer" parent="VBoxContainer/Редактор/HSplitContainer"]
 clip_contents = true
@@ -116,3 +190,7 @@ file_mode = 0
 filters = PackedStringArray("*.json ; JSON файл")
 
 [node name="Node3D" type="Node3D" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer/Новая_карта" to="VBoxContainer/Редактор/HSplitContainer/БазаДанных" method="_on_новая_карта_pressed"]
+[connection signal="pressed" from="VBoxContainer/Редактор/HSplitContainer/БазаДанных/VBoxContainer/Удалить_карту" to="VBoxContainer/Редактор/HSplitContainer/БазаДанных" method="удалить_карту"]
+[connection signal="confirmed" from="VBoxContainer/Редактор/HSplitContainer/БазаДанных/Ввод_нового_id" to="VBoxContainer/Редактор/HSplitContainer/БазаДанных" method="_on_ввод_нового_id_confirmed"]
