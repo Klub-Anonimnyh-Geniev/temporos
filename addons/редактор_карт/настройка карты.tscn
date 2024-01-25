@@ -341,7 +341,6 @@ size_flags_horizontal = 3
 text = "24"
 
 [node name="Заглушка" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
