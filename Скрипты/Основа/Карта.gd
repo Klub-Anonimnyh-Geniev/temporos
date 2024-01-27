@@ -17,7 +17,7 @@ signal меня_разыграл_противник(разыгрываемый)
 ## Отсылается Эффектам для дальнейшего срабатываня
 ##
 ## @experimental
-signal умер()
+signal умер(умерший)
 
 enum Состояние_карты {## Обозначение текущей позиции/роли карты.
 	нигде, ## Карта находится в игре, однако не учавствует в игровой механике как таковой.
@@ -301,10 +301,12 @@ func _on_area_3d_input_event(_camera, event, position, _normal, _shape_idx):
 					if CardManager.желание_разыграть:
 						if проверка_маны():
 							get_viewport().set_input_as_handled()
-							меня_разыграли.emit(self)
+							if Тип_карты.Тип_карты == Тип_карты.ТИП_КАРТЫ.СУЩЕСТВО and GameManager.Карты1.size() < 7:
+								меня_разыграли.emit(self)
+							elif Тип_карты.Тип_карты == Тип_карты.ТИП_КАРТЫ.ЗАКЛИНАНИЕ:
+								меня_разыграли.emit(self)
 					else:
 						CardManager.нерозыгрыш_карты.rpc(я)
-						
 						get_viewport().set_input_as_handled()
 				if Input.is_action_just_pressed("ПКМ"):
 					CardManager.нерозыгрыш_карты.rpc(я)
@@ -390,7 +392,7 @@ func смерть():
 				GameManager.позицияТокенов()
 				Озвучка.set_stream(озвучка_смерть)
 				Озвучка.play()
-				умер.emit()
+				умер.emit(self)
 			Состояние_карты.в_руке:
 				CardManager.КартыВРуке.remove_at(CardManager.КартыВРуке.find(self))
 				CardManager.позиции_в_руке()
@@ -403,7 +405,7 @@ func смерть():
 				GameManager.токеныПротивника()
 				Озвучка.set_stream(озвучка_смерть)
 				Озвучка.play()
-				умер.emit()
+				умер.emit(self)
 			Состояние_карты.в_руке:
 				CardManager.КартыВРукеПротивника.remove_at(CardManager.КартыВРукеПротивника.find(self))
 				CardManager.рукаПротивника()
@@ -420,7 +422,7 @@ func смерть_противник():
 			GameManager.токеныПротивника()
 			Озвучка.set_stream(озвучка_смерть)
 			Озвучка.play()
-			умер.emit()
+			умер.emit(self)
 		Состояние_карты.в_руке:
 			CardManager.КартыВРукеПротивника.remove_at(CardManager.КартыВРукеПротивника.find(self))
 			CardManager.рукаПротивника()
