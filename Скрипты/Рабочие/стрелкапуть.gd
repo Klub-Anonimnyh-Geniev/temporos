@@ -21,7 +21,7 @@ func _process(delta):
 		
 		curve.set_point_position(1,Мышь3D(актор.маркер.global_position.y))
 		каст.position = curve.get_point_position(1)
-		if каст.is_colliding() and каст.get_collider().get_parent() != актор:
+		if каст.is_colliding():
 			цель = каст.get_collider().get_parent()
 		else: цель = null
 		
